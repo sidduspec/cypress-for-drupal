@@ -1,0 +1,18 @@
+{
+    "name": "qualitycoder/cypress-package",
+    "description": "A Cypress package for automating tests in Drupal",
+    "type": "cypress",
+    "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name": "Specbee",
+            "email": "developer@specbee.com",
+            "homepage": "https://specbee.com",
+            "role": "maintainer"
+        }
+    ],
+    "require": {
+      "drupal/core": "^9 || ^10"
+    }
+  }
+  

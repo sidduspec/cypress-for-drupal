@@ -1,0 +1,21 @@
+{
+    "drupal_basic_page_save_button": "div[data-drupal-selector='edit-actions'] > [data-drupal-selector='edit-submit']",
+    "drupal_content_save_as_dropdown": "select[data-drupal-selector='edit-moderation-state-0-state']",
+    "drupal_content_save_button": "input[data-drupal-selector='edit-submit']",
+    "drupal_content_list_page_edit_content_button": "td.views-field-operations a[href*='/edit']",
+    "drupal_content_delete_button": "#edit-delete",
+    "drupal_home_logout_button": "a[data-drupal-link-system-path='user/logout']",
+    "drupal_taxonomy_list_items_button": "li.list.dropbutton__item.dropbutton-action > a",
+    "drupal_taxonomy_term_name_field": "#edit-name-0-value",
+    "drupal_menu_name_field": "#edit-label",
+    "drupal_menu_link_title": "#edit-title-0-value",
+    "druapl_menu_link_field": "#edit-link-0-uri",
+    "druapl_menu_link_submit_button": "#edit-submit",
+    "drupal_block_title_list": ".region-title",
+    "drupal_block_content_list": "table.block-add-table > tbody",
+    "drupal_save_block_button": ".ui-dialog > div:nth-child(3)",
+    "drupal_save_blocks_button": "div[data-drupal-selector='edit-actions']",
+    "drupal_config_maintenance_mode_checkbox": "#edit-maintenance-mode",
+    "drupal_config_page": ".layout-column"
+
+}

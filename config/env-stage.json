@@ -1,0 +1,9 @@
+{
+  "baseUrl": "https://48ad-103-5-134-195.ngrok-free.app/en",
+  "env": {
+    "TAGS": "not @ignore-env-stage",
+    "baseUrl2": "https://discover.semi.org",
+    "admin_user": "prasannahs",
+    "admin_password": "Welcome@123"
+    }
+  }

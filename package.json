@@ -1,0 +1,48 @@
+{
+  "name": "specbee-cypress-package",
+  "version": "1.0.0",
+  "description": "Automation Drupal Applications",
+  "main": "index.js",
+  "scripts": {
+    "run:test:prod": "cypress run --env configFile=env-prod",
+    "run:test:dev": "cypress run --env configFile=env-dev",
+    "run:test:stage": "cypress run --env configFile=env-stage",
+    "run:test:tags": "cypress run --env configFile=env-stage,TAGS=\"@smoke\"",
+    "open:test:prod": "cypress open --env configFile=env-prod",
+    "open:test:dev": "cypress open --env configFile=env-dev",
+    "open:test:stage": "cypress open --env configFile=env-stage",
+    "run:test:prod:smoke": "cypress run --headless --browser chrome --env configFile=env-prod TAGS='<your-tab>'",
+    "run:test:dev:smoke": " cypress run --headless --browser chrome --env configFile=env-dev TAGS='<your-tab>'",
+    "run:test:stage:smoke": " cypress run --headless --browser chrome --env configFile=env-stage TAGS='<your-tab>'",
+    "eslint-fix": "eslint cypress --fix",
+    "format-check": "prettier --write .",
+    "format": "prettier --write .",
+    "cy:verify": "cypress verify",
+    "allure:report": "allure generate cypress/reports/allure-results --clean -o cypress/reports/allure-report",
+    "cy:run:allure:school": "npm run run:test:school-cloud-reg:tags && npm run allure:report",
+    "cy:run:allure:tes": "npm run run:test:tags && npm run allure:report"
+  },
+  "keywords": [
+    "cucumber",
+    "gherkin",
+    "cypress",
+    "testing"
+  ],
+  "devDependencies": {
+    "@badeball/cypress-cucumber-preprocessor": "^19.1.0",
+    "@cypress/browserify-preprocessor": "^3.0.2",
+    "@mmisty/cypress-allure-adapter": "^0.15.2",
+    "allure-commandline": "^2.24.1",
+    "cypress": "^13.5.0",
+    "cypress-browser-permissions": "^1.1.0",
+    "cypress-cucumber-attach-screenshots-to-failed-steps": "^1.0.0",
+    "cypress-file-upload": "^5.0.8",
+    "cypress-on-fix": "^1.0.2",
+    "cypress-plugin-api": "^2.11.1",
+    "cypress-real-events": "^1.11.0",
+    "fs-extra": "^11.1.1",
+    "moment": "^2.29.4",
+    "path": "^0.12.7",
+    "uuid": "^9.0.1"
+  }
+}

@@ -1,0 +1,6 @@
+{
+    "new_unreadmessages_search_bar": "#search",
+    "new_unreadmessages_search_button": ".ml-8 > [data-testid='button-component']",
+    "new_unreadmessages_school_filter": "[data-testid='button-component'] > .text-base",
+    "new_unreadmessages_school_dropdown": "[data-testid='modal-content-message-school-filter'] > .absolute"
+}

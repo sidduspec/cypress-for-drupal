@@ -1,0 +1,14 @@
+node_modules
+cypress/videos
+cypress/screenshots
+cypress/reports
+cypress/downloads
+new-report
+.vscode
+
+
+# test documents 
+cypress/integration/test.feature
+cypress/support/step_definitions/businessKeywords/test.js
+cypress/fixtures/constant/advertId.text
+exampl-pipeline.yml

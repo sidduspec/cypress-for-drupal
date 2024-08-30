@@ -1,0 +1,13 @@
+{
+    "discover_contact_form_firstname": "#FirstName",
+    "discover_contact_form_lastname": "#LastName",
+    "discover_contact_form_email": "#Email",
+    "discover_contact_form_country_code": "#CountryCode",
+    "discover_contact_form_organization": "#Company",
+    "discover_contact_form_reason": "#mktoContactUsReason",
+    "discover_contact_form_message": "#mktoCommentCapture",
+    "discover_contact_form_submit": ".mktoButtonRow > span > button"
+
+    
+
+}
