@@ -1,9 +1,10 @@
 {
-  "name": "specbee-cypress-package",
-  "version": "1.0.0",
+  "name": "specbee-cypress",
+  "version": "1.0.1",
   "description": "Automation Drupal Applications",
   "main": "index.js",
   "scripts": {
+    "postinstall": "node scripts/scaffold.js",
     "run:test:prod": "cypress run --env configFile=env-prod",
     "run:test:dev": "cypress run --env configFile=env-dev",
     "run:test:stage": "cypress run --env configFile=env-stage",
@@ -22,13 +23,16 @@
     "cy:run:allure:school": "npm run run:test:school-cloud-reg:tags && npm run allure:report",
     "cy:run:allure:tes": "npm run run:test:tags && npm run allure:report"
   },
+  "bin": {
+    "setup-cypress": "scripts/scaffold.js"
+  },
   "keywords": [
     "cucumber",
     "gherkin",
     "cypress",
     "testing"
   ],
-  "devDependencies": {
+  "dependencies": {
     "@badeball/cypress-cucumber-preprocessor": "^19.1.0",
     "@cypress/browserify-preprocessor": "^3.0.2",
     "@mmisty/cypress-allure-adapter": "^0.15.2",

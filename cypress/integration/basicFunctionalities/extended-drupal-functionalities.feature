@@ -4,7 +4,7 @@ Feature: Extended Functional Testing of Drupal Application
         Given the user login to drupal admin admin dashboard with username 'admin_user' and password 'admin_password'
 
     @smoke
-    Scenario: Adding a user doe arr
+    Scenario: Adding a user
         When the user navigate to '/admin/people' to add user
         And the user clicks on 'durpal_add_user_button' button to navigate to create user page
         And the user enters mandtotory field values to create a user

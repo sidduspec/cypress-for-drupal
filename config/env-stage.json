@@ -1,5 +1,5 @@
 {
-  "baseUrl": "https://48ad-103-5-134-195.ngrok-free.app/en",
+  "baseUrl": "https://390e-103-5-134-195.ngrok-free.app",
   "env": {
     "TAGS": "not @ignore-env-stage",
     "baseUrl2": "https://discover.semi.org",

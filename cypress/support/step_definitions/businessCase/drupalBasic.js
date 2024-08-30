@@ -27,16 +27,8 @@ When('the user select {string} from {string} to publish the article', (option, d
     cy.selectFromDropdown(option, dropdownSelection)
 })
 
-When('the user clicks the {string} button', (buttonText) => {
-    cy.customClick(buttonText);
-});
-
 Then('the article should be created successfully', () => {
     cy.verifyArticleCreation();
-});
-
-Then('the user should see the message {string}', (message) => {
-    cy.contains(message).should('be.visible');
 });
 
 Given('the user navigates to the content listing page {string}', (url) => {
@@ -144,16 +136,8 @@ Then('the user test user {string} is deleted from the system', (username)=>{
     cy.contains(`Account ${username} has been deleted.`)
 })
 
-When('the user navigates to {string}', (path)=>{
-    cy.visit(path);
-})
-
 Then('the user selects {string} and click on {string}',(text, locator)=>{
     cy.editRowWithTitle('table tbody', text)
-})
-
-Then('the user clicks {string}', (element)=>{
-    cy.customClick(element);
 })
 
 Then('the user enters {string} in the field {string}',(text, locator)=>{
