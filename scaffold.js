@@ -1,30 +1,34 @@
-const fs = require('fs-extra');
-const path = require('path');
+// const fs = require('fs-extra');
+// const path = require('path');
+// const readline = require('readline');
 
-// Path to the directory where this script is located (inside node_modules)
-const currentDir = __dirname;
+// // Create a readline interface for user input
+// const rl = readline.createInterface({
+//     input: process.stdin,
+//     output: process.stdout
+// });
 
-// Path to the project root (one level above the current directory)
-const packageRoot = path.resolve(currentDir, '../..');
+// const packageRoot = path.resolve(__dirname); // Path to package root directory
 
-// Path to the current working directory where the user is installing the package
-const targetDir = process.cwd();
+// // Ask user where to copy the files
+// rl.question('Enter the target directory to set up Cypress project (default: current directory): ', (answer) => {
+//     const targetDir = answer || process.cwd(); // Use provided path or default to current directory
+//     console.log('Copying files from:', packageRoot);
+//     console.log('To:', targetDir);
 
-console.log('Copying files from:', packageRoot);
-console.log('To:', targetDir);
+//     // Copy files excluding node_modules and hidden files
+//     fs.copy(packageRoot, targetDir, { 
+//         overwrite: true, 
+//         filter: (src) => !src.includes('node_modules') && !path.basename(src).startsWith('.') 
+//     }, (err) => {
+//         if (err) {
+//             console.error('Error setting up Cypress project:', err);
+//             process.exit(1);
+//         } else {
+//             console.log('Cypress project setup completed successfully!');
+//             process.exit(0);
+//         }
+//     });
 
-// Ensure that source and target are not the same
-if (packageRoot === targetDir) {
-    console.error('Source and destination must not be the same.');
-    process.exit(1);
-}
-
-// Copy all contents from the package root to the target directory
-fs.copy(packageRoot, targetDir, { overwrite: true, filter: src => !src.includes('node_modules') }, (err) => {
-    if (err) {
-        console.error('Error setting up Cypress project:', err);
-        process.exit(1);
-    } else {
-        console.log('Cypress project setup completed successfully!');
-    }
-});
+//     rl.close();
+// });
