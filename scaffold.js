@@ -2,11 +2,18 @@
 const fs = require('fs-extra');
 const path = require('path');
 
-const sourceDir = path.join(__dirname, 'specbee-cypress'); // Path to your Cypress project template
-const destDir = path.join(process.cwd(), 'cypress'); // Current working directory
+// Path to the root of the installed package
+const packageRoot = __dirname;
 
-// Copy Cypress project files to the destination directory
-fs.copy(sourceDir, destDir, { overwrite: true }, (err) => {
+// Path to the current working directory where the package is installed
+const targetDir = process.cwd();
+
+// Log paths for debugging
+console.log('Copying files from:', packageRoot);
+console.log('To:', targetDir);
+
+// Copy all contents from the package root to the target directory
+fs.copy(packageRoot, targetDir, { overwrite: true, filter: src => !src.includes('node_modules') }, (err) => {
     if (err) {
         console.error('Error setting up Cypress project:', err);
         process.exit(1);
