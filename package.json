@@ -1,10 +1,9 @@
 {
   "name": "specbee-cypress",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Automation Drupal Applications",
   "main": "index.js",
   "scripts": {
-    "postinstall": "node scripts/scaffold.js",
     "run:test:prod": "cypress run --env configFile=env-prod",
     "run:test:dev": "cypress run --env configFile=env-dev",
     "run:test:stage": "cypress run --env configFile=env-stage",
@@ -24,7 +23,7 @@
     "cy:run:allure:tes": "npm run run:test:tags && npm run allure:report"
   },
   "bin": {
-    "setup-cypress": "scripts/scaffold.js"
+    "setup-cypress": "cli.js"
   },
   "keywords": [
     "cucumber",

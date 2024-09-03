@@ -1,12 +1,10 @@
-// scripts/scaffold.js
+// cli.js
 const fs = require('fs-extra');
 const path = require('path');
 
-// Define the source and destination paths
-const sourceDir = path.resolve(__dirname, 'node_modules/specbee-cypress'); // Source is the cypress folder in your package
-const destDir = path.resolve(__dirname, '..'); // Destination is the user's project directory
+const sourceDir = path.join(__dirname, 'cypress-template'); // Path to your template
+const destDir = process.cwd(); // Current working directory
 
-// Copy files
 fs.copy(sourceDir, destDir, (err) => {
     if (err) {
         console.error('Error setting up Cypress project:', err);
