@@ -1,34 +1,23 @@
-// const fs = require('fs-extra');
-// const path = require('path');
-// const readline = require('readline');
+const { exec } = require('child_process');
+const path = require('path');
 
-// // Create a readline interface for user input
-// const rl = readline.createInterface({
-//     input: process.stdin,
-//     output: process.stdout
-// });
+// Path to the user's project root (current directory where the command is run)
+const targetDir = process.cwd();
 
-// const packageRoot = path.resolve(__dirname); // Path to package root directory
+// Path to the specbee-cypress directory inside node_modules
+const sourceDir = path.join(targetDir, 'node_modules', 'specbee-cypress');
 
-// // Ask user where to copy the files
-// rl.question('Enter the target directory to set up Cypress project (default: current directory): ', (answer) => {
-//     const targetDir = answer || process.cwd(); // Use provided path or default to current directory
-//     console.log('Copying files from:', packageRoot);
-//     console.log('To:', targetDir);
+console.log('Copying files from:', sourceDir);
+console.log('To:', targetDir);
 
-//     // Copy files excluding node_modules and hidden files
-//     fs.copy(packageRoot, targetDir, { 
-//         overwrite: true, 
-//         filter: (src) => !src.includes('node_modules') && !path.basename(src).startsWith('.') 
-//     }, (err) => {
-//         if (err) {
-//             console.error('Error setting up Cypress project:', err);
-//             process.exit(1);
-//         } else {
-//             console.log('Cypress project setup completed successfully!');
-//             process.exit(0);
-//         }
-//     });
-
-//     rl.close();
-// });
+// Execute the cp command to copy files
+exec(`cp -R ${sourceDir}/* ${targetDir}/`, (err, stdout, stderr) => {
+    if (err) {
+        console.error(`Error copying files: ${stderr}`);
+        process.exit(1);
+    } else {
+        console.log('Files copied successfully!');
+        console.log(stdout);
+        process.exit(0);
+    }
+});
