@@ -3,8 +3,8 @@ const fs = require('fs-extra');
 const path = require('path');
 
 // Define the source and destination paths
-const sourceDir = path.join(__dirname, '..', 'cypress'); // Source is the cypress folder in your package
-const destDir = path.join(process.cwd(), 'cypress'); // Destination is the user's project directory
+const sourceDir = path.resolve(__dirname, 'node_modules/specbee-cypress'); // Source is the cypress folder in your package
+const destDir = path.resolve(__dirname, '..'); // Destination is the user's project directory
 
 // Copy files
 fs.copy(sourceDir, destDir, (err) => {
