@@ -1,9 +1,10 @@
 {
   "name": "specbee-cypress",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Automation Drupal Applications",
   "main": "index.js",
   "scripts": {
+    "postinstall": "node scaffold.js",
     "run:test:prod": "cypress run --env configFile=env-prod",
     "run:test:dev": "cypress run --env configFile=env-dev",
     "run:test:stage": "cypress run --env configFile=env-stage",
@@ -21,9 +22,6 @@
     "allure:report": "allure generate cypress/reports/allure-results --clean -o cypress/reports/allure-report",
     "cy:run:allure:school": "npm run run:test:school-cloud-reg:tags && npm run allure:report",
     "cy:run:allure:tes": "npm run run:test:tags && npm run allure:report"
-  },
-  "bin": {
-    "setup-cypress": "scripts/scaffold.js"
   },
   "keywords": [
     "cucumber",
