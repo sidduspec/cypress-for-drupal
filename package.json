@@ -1,6 +1,6 @@
 {
   "name": "specbee-cypress",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Automation Drupal Applications",
   "main": "index.js",
   "scripts": {
@@ -45,5 +45,11 @@
     "moment": "^2.29.4",
     "path": "^0.12.7",
     "uuid": "^9.0.1"
-  }
+  },
+  "files": [
+    "*",
+    "cypress/**/*",
+    "!node_modules",
+    "!package-lock.json"
+  ]
 }
