@@ -1,6 +1,6 @@
 {
   "name": "specbee-cypress",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "Automation Drupal Applications",
   "main": "index.js",
   "scripts": {
