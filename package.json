@@ -1,6 +1,6 @@
 {
   "name": "specbee-cypress",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "Automation Drupal Applications",
   "main": "index.js",
   "scripts": {
@@ -22,7 +22,8 @@
     "cy:verify": "cypress verify",
     "allure:report": "allure generate cypress/reports/allure-results --clean -o cypress/reports/allure-report",
     "cy:run:allure:school": "npm run run:test:school-cloud-reg:tags && npm run allure:report",
-    "cy:run:allure:tes": "npm run run:test:tags && npm run allure:report"
+    "cy:run:allure:tes": "npm run run:test:tags && npm run allure:report",
+    "scaffold:my:cypress": "simple-scaffold --templates ./ --output test --create-sub-folder true drupal-cypress"
   },
   "keywords": [
     "cucumber",
@@ -52,5 +53,8 @@
     "cypress/**/*",
     "!node_modules",
     "!package-lock.json"
-  ]
+  ],
+  "devDependencies": {
+    "simple-scaffold": "^2.2.2"
+  }
 }
