@@ -1,6 +1,6 @@
 {
   "name": "specbee-cypress",
-  "version": "1.0.20",
+  "version": "1.0.21",
   "description": "Automation Drupal Applications",
   "main": "index.js",
   "scripts": {
@@ -22,7 +22,7 @@
     "cy:run:allure:school": "npm run run:test:school-cloud-reg:tags && npm run allure:report",
     "cy:run:allure:tes": "npm run run:test:tags && npm run allure:report",
     "scaffold:my:cypress": "simple-scaffold -w --templates node_modules/specbee-cypress --output ./ --create-sub-folder true",
-    "postinstall": "npx scaffold:my:cypress"
+    "postinstall": "npm run scaffold:my:cypress"
   },
   "keywords": [
     "cucumber",
