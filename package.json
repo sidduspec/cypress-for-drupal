@@ -1,11 +1,9 @@
 {
   "name": "specbee-cypress",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "description": "Automation Drupal Applications",
   "main": "index.js",
   "scripts": {
-    "postinstall": "node move-files.js",
-    "post-update-cmd": "node move-files.js",
     "run:test:prod": "cypress run --env configFile=env-prod",
     "run:test:dev": "cypress run --env configFile=env-dev",
     "run:test:stage": "cypress run --env configFile=env-stage",
