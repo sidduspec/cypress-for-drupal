@@ -4,7 +4,7 @@ module.exports = (config) => {
     return {
       cypress: {
         templates: ["node_modules/specbee-cypress"],
-        output: "./",
+        output: "../../test",
       },
     }
   }
