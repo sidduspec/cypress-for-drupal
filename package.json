@@ -1,11 +1,12 @@
 {
   "name": "specbee-cypress",
-  "version": "1.0.25",
+  "version": "1.0.26",
   "description": "Automation Drupal Applications",
   "main": "index.js",
   "scripts": {
     "scaffold:my:cypress": "simple-scaffold -w --templates node_modules/specbee-cypress --output ./ --create-sub-folder true",
-    "postinstall": "echo 'postinstall script triggered' && npm run scaffold:my:cypress",
+    "scaffold:cypress:byconfig": "simple-scaffold -r  -c scaffold.js -k component drupal-cypress -H --subdir true",
+    "postinstall": "echo 'postinstall script triggered' && npm run scaffold:cypress:byconfig",
     "run:test:prod": "cypress run --env configFile=env-prod",
     "run:test:dev": "cypress run --env configFile=env-dev",
     "run:test:stage": "cypress run --env configFile=env-stage",
