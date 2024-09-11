@@ -103,5 +103,13 @@ module.exports = defineConfig({
       }
       return config;
     },
+    addCucumberPreprocessorPlugin: {
+      stepDefinitions: [
+        "cypress/support/step_definitions/**/**/*.{js,ts}",
+        "cypress/support/step_definitions/**/*.{js,ts}"
+      ],
+      filterSpecs: true,
+      omitFiltered: true
+    }
   },
 });

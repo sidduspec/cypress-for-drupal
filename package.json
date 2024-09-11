@@ -14,7 +14,6 @@
     "run:test:prod:smoke": "cypress run --headless --browser chrome --env configFile=env-prod TAGS='<your-tab>'",
     "run:test:dev:smoke": " cypress run --headless --browser chrome --env configFile=env-dev TAGS='<your-tab>'",
     "run:test:stage:smoke": " cypress run --headless --browser chrome --env configFile=env-stage TAGS='<your-tab>'",
-    "eslint-fix": "eslint cypress --fix",
     "format-check": "prettier --write .",
     "format": "prettier --write .",
     "cy:verify": "cypress verify",
@@ -47,11 +46,5 @@
     "path": "^0.12.7",
     "uuid": "^9.0.1",
     "simple-scaffold": "^2.2.2"
-  },
-  "files": [
-    "*",
-    "cypress/**/*",
-    "!node_modules",
-    "!package-lock.json"
-  ]
+  }
 }

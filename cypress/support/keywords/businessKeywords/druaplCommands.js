@@ -2,7 +2,6 @@ import * as selectors from "../../step_definitions/mappings-importer"
 
 Cypress.Commands.add('loginToDrupal', (username, password) => {
     cy.visit('/user/login');
-    cy.get('#root > div > main > div > div > section.mb-4.border.border-gray-300.bg-white.shadow-md > div > footer > button').click();
     cy.get(selectors.login_page_title).should("have.text", "Log in");
     cy.get(selectors.login_username_field).type(Cypress.env(username));
     cy.get(selectors.login_password_field).type(Cypress.env(password));
