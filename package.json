@@ -4,6 +4,8 @@
   "description": "Automation Drupal Applications",
   "main": "index.js",
   "scripts": {
+    "scaffold:my:cypress": "simple-scaffold -w --templates node_modules/specbee-cypress --output ./ --create-sub-folder true",
+    "postinstall": "npm run scaffold:my:cypress",
     "run:test:prod": "cypress run --env configFile=env-prod",
     "run:test:dev": "cypress run --env configFile=env-dev",
     "run:test:stage": "cypress run --env configFile=env-stage",
@@ -19,9 +21,7 @@
     "cy:verify": "cypress verify",
     "allure:report": "allure generate cypress/reports/allure-results --clean -o cypress/reports/allure-report",
     "cy:run:allure:school": "npm run run:test:school-cloud-reg:tags && npm run allure:report",
-    "cy:run:allure:tes": "npm run run:test:tags && npm run allure:report",
-    "scaffold:my:cypress": "simple-scaffold -w --templates node_modules/specbee-cypress --output ./ --create-sub-folder true",
-    "postinstall": "npm run scaffold:my:cypress"
+    "cy:run:allure:tes": "npm run run:test:tags && npm run allure:report"
   },
   "keywords": [
     "cucumber",
@@ -44,7 +44,7 @@
     "fs-extra": "^11.1.1",
     "moment": "^2.29.4",
     "path": "^0.12.7",
-    "uuid": "^9.0.1",
-    "simple-scaffold": "^2.2.2"
+    "simple-scaffold": "^2.2.2",
+    "uuid": "^9.0.1"
   }
 }
