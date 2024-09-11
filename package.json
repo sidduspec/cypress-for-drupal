@@ -4,9 +4,9 @@
   "description": "Automation Drupal Applications",
   "main": "index.js",
   "scripts": {
-    "scaffold:my:cypress": "simple-scaffold -w --templates node_modules/specbee-cypress --output ./",
+    "scaffold:my:cypress": "simple-scaffold -w --templates node_modules/specbee-cypress --output ./ --create-sub-folder true",
     "scaffold:cypress:byconfig": "simple-scaffold -r  -c scaffold.js -k cypress drupal-cypress",
-    "postinstall": "echo 'postinstall script triggered' && npm run scaffold:my:cypress",
+    "postinstall": "echo 'postinstall script triggered' && npm run scaffold:cypress:byconfig",
     "run:test:prod": "cypress run --env configFile=env-prod",
     "run:test:dev": "cypress run --env configFile=env-dev",
     "run:test:stage": "cypress run --env configFile=env-stage",
