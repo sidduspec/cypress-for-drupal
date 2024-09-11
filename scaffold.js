@@ -4,7 +4,7 @@ module.exports = (config) => {
     return {
       cypress: {
         templates: ["node-modules/specbee-cypress"],
-        output: "./drupal-cypress",
+        output: "./",
       },
     }
   }
