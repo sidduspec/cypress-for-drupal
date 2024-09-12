@@ -28,13 +28,17 @@ module.exports = () => {
       path.join(cypressForDrupalPath, 'package.json')
     ],  // Refer to installed package's paths inside node_modules
     output: (file) => {
-      // file is a string path
-      if (file.startsWith(path.join(__dirname, './specbee-cypress/cypress'))) {
-        return file.replace(
-          path.join(__dirname, './specbee-cypress/cypress'), '../../'
-        )
+      // Ensure the path is relative to './specbee-cypress/cypress'
+      const specbeeCypressPath = path.normalize('specbee-cypress');
+    
+      // If the file starts with 'specbee-cypress/cypress', modify its path
+      if (file.startsWith(specbeeCypressPath)) {
+        return file.replace(specbeeCypressPath, path.normalize('../../'));
       }
-      return path.join(__dirname, '../..', file)
+    
+      // For other files, return a relative path to the output directory
+      console.log(file)
+      return path.join('../../', file);
     },
     // overwrite: (file) => {
     //   console.log('starting the overwrite');
