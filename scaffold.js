@@ -26,25 +26,26 @@ module.exports = () => {
       path.join(cypressForDrupalPath, 'cypress'),
       path.join(cypressForDrupalPath, 'config'),
       path.join(cypressForDrupalPath, 'package.json')
-    ],  // Refer to installed package's paths inside node_modules
+    ],
     output: (file) => {
-      // Define the base path that you want to replace (e.g., node_modules path)
-      const basePath = path.resolve(__dirname, 'node_modules/cypress-for-drupal/cypress');
-    
-      // If the file is inside 'node_modules/cypress-for-drupal/cypress', make it relative
+      // Define the base path for 'cypress'
+      const basePath = path.resolve(cypressForDrupalPath, 'cypress');
+
+      // Handle files inside 'cypress-for-drupal/cypress' directory
       if (file.startsWith(basePath)) {
-        const relativePath = path.relative(basePath, file);  // Get the relative path
-        return path.join('../../', relativePath);  // Scaffold into the relative destination
+        const relativePath = path.relative(basePath, file);
+        return path.join('../../', relativePath);
       }
-    
-      // For other files, you can return a general relative path
-      return path.join('../../', path.relative(__dirname, file));
+
+      // Special case for package.json to avoid treating it like a directory
+      if (file.endsWith('package.json')) {
+        return path.join('../../', 'package.json');  // Output directly to '../../'
+      }
+
+      // For other files, return a general relative path
+      return path.join('../../', path.relative(cypressForDrupalPath, file));
     },
-    // overwrite: (file) => {
-    //   console.log('starting the overwrite');
-    //   // Overwrite only the package.json file
-    //   return file.path.endsWith('package.json');
-    // },
   });
 };
+
 
