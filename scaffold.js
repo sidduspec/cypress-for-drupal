@@ -28,11 +28,11 @@ module.exports = () => {
       path.join(cypressForDrupalPath, 'package.json')
     ],  // Refer to installed package's paths inside node_modules
     output: path.join(__dirname, '../../'),
-    overwrite: (file) => {
-      console.log('starting the overwrite');
-      // Overwrite only the package.json file
-      return file.path.endsWith('package.json');
-    },
+    // overwrite: (file) => {
+    //   console.log('starting the overwrite');
+    //   // Overwrite only the package.json file
+    //   return file.path.endsWith('package.json');
+    // },
   });
 };
 
