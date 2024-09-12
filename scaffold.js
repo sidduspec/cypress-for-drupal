@@ -28,17 +28,17 @@ module.exports = () => {
       path.join(cypressForDrupalPath, 'package.json')
     ],  // Refer to installed package's paths inside node_modules
     output: (file) => {
-      // Ensure the path is relative to './specbee-cypress/cypress'
-      const specbeeCypressPath = path.normalize('specbee-cypress');
+      // Define the base path that you want to replace (e.g., node_modules path)
+      const basePath = path.resolve(__dirname, 'node_modules/cypress-for-drupal/cypress');
     
-      // If the file starts with 'specbee-cypress/cypress', modify its path
-      if (file.startsWith(specbeeCypressPath)) {
-        return file.replace(specbeeCypressPath, path.normalize('../../'));
+      // If the file is inside 'node_modules/cypress-for-drupal/cypress', make it relative
+      if (file.startsWith(basePath)) {
+        const relativePath = path.relative(basePath, file);  // Get the relative path
+        return path.join('../../', relativePath);  // Scaffold into the relative destination
       }
     
-      // For other files, return a relative path to the output directory
-      console.log(file)
-      return path.join('../../', file);
+      // For other files, you can return a general relative path
+      return path.join('../../', path.relative(__dirname, file));
     },
     // overwrite: (file) => {
     //   console.log('starting the overwrite');
