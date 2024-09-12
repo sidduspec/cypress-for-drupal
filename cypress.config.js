@@ -87,7 +87,7 @@ module.exports = defineConfig({
 
       config.screenshotsFolder = path.join(logPath, "screenshots");
       // accept a configFile value or use qa by default
-      const file = config.env.configFile || "env-stage";
+      const file = config.env.configFile || "stage";
       const featureTags = config.env.TAGS;
       const environmentFile = await getConfigurationByFile(file);
       const { baseUrl, env } = environmentFile;
