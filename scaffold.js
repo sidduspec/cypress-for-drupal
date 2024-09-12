@@ -17,7 +17,7 @@ const path = require('path');
 const { Scaffold } = require('simple-scaffold');
 
 // Get the path of your installed package from node_modules
-const cypressForDrupalPath = path.dirname(require.resolve('cypress-for-drupal/package.json'));
+const cypressForDrupalPath = path.dirname(require.resolve('cypress-for-drupal'));
 
 module.exports = () => {
   return Scaffold({
@@ -26,26 +26,23 @@ module.exports = () => {
       path.join(cypressForDrupalPath, 'cypress'),
       path.join(cypressForDrupalPath, 'config'),
       path.join(cypressForDrupalPath, 'package.json')
-    ],
+    ],  // Refer to installed package's paths inside node_modules
     output: (file) => {
-      // Define the base path for 'cypress'
-      const basePath = path.resolve(cypressForDrupalPath, 'cypress');
-
-      // Handle files inside 'cypress-for-drupal/cypress' directory
+      // Define the base path that you want to replace (e.g., node_modules path)
+      const basePath = path.resolve(__dirname, 'node_modules/cypress-for-drupal/cypress');
+    
+      // If the file is inside 'node_modules/cypress-for-drupal/cypress', make it relative
       if (file.startsWith(basePath)) {
-        const relativePath = path.relative(basePath, file);
-        return path.join('../../', relativePath);
+        console.log(basePath)
+        const relativePath = path.relative(basePath, file);  // Get the relative path
+        console.log(relativePath)
+        return path.join('../../', relativePath);  // Scaffold into the relative destination
       }
-
-      // Special case for package.json to avoid treating it like a directory
-      if (file.endsWith('package.json')) {
-        return path.join('../../', 'package.json');  // Output directly to '../../'
-      }
-
-      // For other files, return a general relative path
-      return path.join('../../', path.relative(cypressForDrupalPath, file));
+    
+      // For other files, you can return a general relative path
+      console.log(file)
+      return path.join('../../', path.relative(__dirname, file));
     },
   });
 };
-
 
