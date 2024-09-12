@@ -7,14 +7,14 @@ module.exports = (config) => {
     templates: ['.'],  // Ensure templates is an array, even if it's just one element
     output: path.join(__dirname, '../../'),
     filter: (file) => {
-      console.log('starting the filter')
-      const isUnnecessaryFile = file.path.includes('package-lock') ||
-        file.path.includes('bitbucket-pipeline') ||
-        file.path.includes('scaffold.js') ||
-        file.path.includes('README.md') ||
-        file.path.includes('node_modules');
-        console.log(`Should include: ${!isUnnecessaryFile}`);
-      return !isUnnecessaryFile;
+      // const isUnnecessaryFile = file.path.includes('package-lock') ||
+      //   file.path.includes('bitbucket-pipeline') ||
+      //   file.path.includes('scaffold.js') ||
+      //   file.path.includes('README.md') ||
+      //   file.path.includes('node_modules');
+      //   console.log(`Should include: ${!isUnnecessaryFile}`);
+      console.log(`Filtering file: ${file.path}`);
+      return !file.path.endsWith('.yml');
     },
     // overwrite: (file) => {
     //   console.log('starting the overwrite')
