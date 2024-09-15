@@ -29,16 +29,16 @@ module.exports = () => {
     ],  // Refer to installed package's paths inside node_modules
     // output: path.join(__dirname, '../../'),
     output: (file) => {
-      // Define the base path that you want to replace (e.g., node_modules path)
-      // const basePath = path.resolve(__dirname, 'node_modules/cypress-for-drupal/cypress');
+      //Define the base path that you want to replace (e.g., node_modules path)
+      const basePath = path.resolve(__dirname, 'node_modules/cypress-for-drupal/cypress.config.js');
     
-      // // If the file is inside 'node_modules/cypress-for-drupal/cypress', make it relative
-      // if (file.startsWith(basePath)) {
-      //   console.log(basePath)
-      //   const relativePath = path.relative(basePath, file);  // Get the relative path
-      //   console.log(relativePath)
-      //   return path.join('../../', relativePath);  // Scaffold into the relative destination
-      // }
+      // If the file is inside 'node_modules/cypress-for-drupal/cypress', make it relative
+      if (file.startsWith(basePath)) {
+        console.log(basePath)
+        const relativePath = path.relative(basePath, file);  // Get the relative path
+        console.log(relativePath)
+        return path.join('../../', relativePath);  // Scaffold into the relative destination
+      }
     
       // For other files, you can return a general relative path
       console.log(file)
