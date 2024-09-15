@@ -21,22 +21,22 @@ module.exports = () => {
       // Handle 'cypress/' files and folders
       if (file.startsWith(cypressBasePath)) {
         const relativePath = path.relative(cypressBasePath, file);  // Get the relative path from the 'cypress' directory
-        return path.join('cypress-to-drupal/cypress', relativePath);  // Scaffold into the 'cypress' folder under 'cypress-to-drupal'
+        return path.join('../../', relativePath);  // Scaffold into the 'cypress' folder under 'cypress-to-drupal'
       }
       
       // Handle 'config/' files
       if (file.startsWith(configBasePath)) {
         const relativePath = path.relative(configBasePath, file);   // Get the relative path from the 'config' directory
-        return path.join('cypress-to-drupal/config', relativePath);   // Scaffold into the 'config' folder under 'cypress-to-drupal'
+        return path.join('../../', relativePath);   // Scaffold into the 'config' folder under 'cypress-to-drupal'
       }
 
       // Handle 'cypress.config.js' separately
       if (file === configJsPath) {
-        return path.join('cypress-to-drupal', 'cypress.config.js');   // Scaffold the 'cypress.config.js' file into the 'cypress-to-drupal' root
+        return path.join('../../', 'cypress.config.js');   // Scaffold the 'cypress.config.js' file into the 'cypress-to-drupal' root
       }
 
       // Fallback in case the file doesn't match any of the above paths
-      return path.join('cypress-to-drupal', path.relative(__dirname, file));
+      return path.join('../../', path.relative(__dirname, file));
     },
   });
 };
