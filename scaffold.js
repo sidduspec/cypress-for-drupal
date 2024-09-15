@@ -14,13 +14,15 @@ module.exports = () => {
     ],  
     output: (file) => {
         // file is a string path
-        if (file.startsWith(path.join(__dirname, './specbee-cypress/cypress'))) {
+        console.log(__dirname, path.join(__dirname, './cypress'))
+        if (file.startsWith(path.join(__dirname, './cypress'))) {
+          
           return file.replace(
-            path.join(__dirname, './specbee-cypress/cypress'),
-            path.join(__dirname, '../..'),
+            path.join(__dirname, './cypress'),
+            path.join(__dirname, '../../'),
           )
         }
-        return path.join(__dirname, '../..', file)
+        return path.join(__dirname, '../../', file)
     }
   })
 };
