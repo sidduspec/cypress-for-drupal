@@ -5,7 +5,7 @@ module.exports = () => {
   return Scaffold({
     name: 'cypress-for-drupal',
     templates: [
-      './node_modules/cypress-for-drupal',
+      '.',
       '!scaffold.js',
       '!node_modules',
       '!.gitignore',
