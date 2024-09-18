@@ -1,28 +1,26 @@
-// scaffold.js
-
 const fs = require('fs-extra');
 const path = require('path');
 
-// Define source and destination paths
+// Correct source directory - it directly points to node_modules/cypress-for-drupal
 const sourceDir = path.join(__dirname, 'node_modules', 'cypress-for-drupal');
 const destinationDir = path.join(__dirname);
 
 // Copy the required folders and files
-const foldersToCopy = [
+const itemsToCopy = [
   'cypress',      // cypress folder with fixtures, integration, support
   'config',       // config folder with dev.json, stage.json, prod.json
   'cypress.config.js'
 ];
 
-foldersToCopy.forEach(folder => {
-  const src = path.join(sourceDir, folder);
-  const dest = path.join(destinationDir, folder);
+itemsToCopy.forEach(item => {
+  const src = path.join(sourceDir, item);
+  const dest = path.join(destinationDir, item);
 
   fs.copy(src, dest, (err) => {
     if (err) {
-      console.error(`Error copying ${folder}:`, err);
+      console.error(`Error copying ${item}:`, err);
     } else {
-      console.log(`${folder} was copied successfully.`);
+      console.log(`${item} was copied successfully.`);
     }
   });
 });
