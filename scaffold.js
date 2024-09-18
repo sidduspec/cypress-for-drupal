@@ -1,46 +1,38 @@
 const path = require('path');
+const fs = require('fs');
 const { Scaffold } = require('simple-scaffold');
+
+// Get the base path of your installed package from node_modules
+const packageBasePath = path.dirname(require.resolve('cypress-for-drupal/package.json'));
 
 module.exports = () => {
   return Scaffold({
     name: 'cypress-for-drupal',
     templates: [
-      // './cypress-for-drupal/cypress',
-      // './cypress-for-drupal/config',
-      // './cypress-for-drupal/cypress.config.js',
-      // './cypress-for-drupal/cypress',
-      // '!scaffold.js',
-      // '!node_modules',
-      // '!.gitignore',
-      // '!bitbucket-pipeline.yml',
-      // '!git',
-
-      path.join(__dirname, 'node_modules/cypress-for-drupal/cypress'),
-      path.join(__dirname, 'node_modules/cypress-for-drupal/cypress/support/e2e.js'),
-      path.join(__dirname, 'node_modules/cypress-for-drupal/cypress/support/commands.js'),
-      path.join(__dirname, 'node_modules/cypress-for-drupal/config'),
-      path.join(__dirname, 'node_modules/cypress-for-drupal/package.json')
+      path.join(packageBasePath, 'cypress'),    // Include the 'cypress/' folder
+      path.join(packageBasePath, 'config'),     // Include the 'config/' folder
+      path.join(packageBasePath, 'cypress.config.js'), // Include 'cypress.config.js'
+      '!node_modules',                          // Exclude node_modules
+      '!scaffold.js',                           // Exclude scaffold.js
+      '!.gitignore',                            // Exclude .gitignore
+      '!bitbucket-pipelines.yml'                // Exclude bitbucket-pipelines.yml
     ],
-    // subdir: true,
-      output: (__file) => {
-      //   // Calculate the relative path from the project root
-      //  console.log(path.dirname(file));
-      //   const relativePath = path.relative(process.cwd(), path.dirname(file));
-      //   // Check if the file is a directory
-      //   //const isDirectory = await fs.stat(file).then(stats => stats.isDirectory())
-      //   // Include all files and directories for scaffolding
-      //   return relativePath;
-
-      console.log(__file, path.isAbsolute(__file));
-      console.log(path.relative(__dirname, __file))
-      console.log(__dirname)
+    output: (file) => {
+        // Calculate the relative path between the file and the package base path
+        const relativeFilePath = path.relative(packageBasePath, file);
+        
+        // Check if the file path is a directory or a file
+        const isDirectory = fs.lstatSync(file).isDirectory();
   
-      path.isAbsolute(__file);
-
-
-      return '../../'
-
-      
-    },
-  });
-};
+        if (isDirectory) {
+          // If it's a directory, return the same directory path
+          console.log(`Scaffolding directory: ${relativeFilePath}`);
+          return path.join(__dirname, relativeFilePath);
+        } else {
+          // If it's a file, scaffold it in the exact same structure
+          console.log(`Scaffolding file: ${relativeFilePath}`);
+          return path.join(__dirname, relativeFilePath);
+        }
+      },
+    });
+  };
