@@ -5,18 +5,18 @@ module.exports = () => {
   return Scaffold({
     name: 'cypress-for-drupal',
     templates: [
-      '.',
-      '!scaffold.js',
-      '!node_modules',
-      '!.gitignore',
-      '!bitbucket-pipeline.yml',
-      '!git'
+      // '.',
+      // '!scaffold.js',
+      // '!node_modules',
+      // '!.gitignore',
+      // '!bitbucket-pipeline.yml',
+      // '!git'
 
-      // path.join(__dirname, 'node_modules/cypress-for-drupal/cypress'),
-      // path.join(__dirname, 'node_modules/cypress-for-drupal/cypress/support/e2e.js'),
-      // path.join(__dirname, 'node_modules/cypress-for-drupal/cypress/support/commands.js'),
-      // path.join(__dirname, 'node_modules/cypress-for-drupal/config'),
-      // path.join(__dirname, 'node_modules/cypress-for-drupal/package.json')
+      path.join(__dirname, 'node_modules/cypress-for-drupal/cypress'),
+      path.join(__dirname, 'node_modules/cypress-for-drupal/cypress/support/e2e.js'),
+      path.join(__dirname, 'node_modules/cypress-for-drupal/cypress/support/commands.js'),
+      path.join(__dirname, 'node_modules/cypress-for-drupal/config'),
+      path.join(__dirname, 'node_modules/cypress-for-drupal/package.json')
     ],
     // subdir: true,
       output: (__file) => {
