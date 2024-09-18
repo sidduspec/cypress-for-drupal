@@ -1,21 +1,31 @@
 const fs = require('fs-extra');
 const path = require('path');
 
-// Correct source directory - it directly points to node_modules/cypress-for-drupal
-const sourceDir = __dirname; // This points to 'node_modules/cypress-for-drupal'
-const destinationDir = process.cwd();
+// Resolve the correct source directory (relative to the package location in node_modules)
+const sourceDir = path.join(__dirname); // Assuming scaffold.js is in the root of your package
+const destinationDir = path.join(process.cwd()); // This will be the root of the project where the package is installed
 
-// Copy the required folders and files
+console.log('Source Directory:', sourceDir);
+console.log('Destination Directory:', destinationDir);
+
+// Ensure source and destination are not the same
+if (sourceDir === destinationDir) {
+  console.error("Source and destination directories cannot be the same.");
+  process.exit(1); // Exit if they're the same
+}
+
+// Items to copy
 const itemsToCopy = [
-  'cypress',      // cypress folder with fixtures, integration, support
-  'config',       // config folder with dev.json, stage.json, prod.json
+  'cypress',
+  'config',
   'cypress.config.js'
 ];
 
 itemsToCopy.forEach(item => {
-  const src = path.join(sourceDir, item);
-  const dest = path.join(destinationDir, item);
+  const src = path.join(sourceDir, item); // source within the package
+  const dest = path.join(destinationDir, item); // destination in the project
 
+  // Copy each item
   fs.copy(src, dest, (err) => {
     if (err) {
       console.error(`Error copying ${item}:`, err);
