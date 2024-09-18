@@ -35,7 +35,7 @@ module.exports = () => {
       path.isAbsolute(__file);
 
 
-      return './'
+      return '../../'
 
       
     },
