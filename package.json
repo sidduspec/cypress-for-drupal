@@ -4,9 +4,7 @@
   "description": "Automate Drupal Applications at ease",
   "main": "index.js",
   "scripts": {
-    "scaffold:my:cypress": "echo 'scaffolding from CLI' && simple-scaffold --templates . --output ../../ --create-sub-folder true",
-    "scaffold:cypress:by:config": "echo 'scaffolding by config' && simple-scaffold -c scaffold.js",
-    "postinstall": "echo 'postinstall script triggered to scaffold Cypress' && node scaffold_1.js",
+    "postinstall": "echo 'postinstall script triggered to scaffold Cypress' && node scaffold.config.js",
     "run:test:prod": "cypress run --env configFile=prod",
     "run:test:dev": "cypress run --env configFile=dev",
     "run:test:stage": "cypress run --env configFile=stage",
@@ -17,8 +15,6 @@
     "run:test:prod:smoke": "cypress run --headless --browser chrome --env configFile=prod TAGS='<your-tab>'",
     "run:test:dev:smoke": " cypress run --headless --browser chrome --env configFile=dev TAGS='<your-tab>'",
     "run:test:stage:smoke": " cypress run --headless --browser chrome --env configFile=stage TAGS='<your-tab>'",
-    "format-check": "prettier --write .",
-    "format": "prettier --write .",
     "cy:verify": "cypress verify",
     "allure:report": "allure generate cypress/reports/allure-results --clean -o cypress/reports/allure-report",
     "cy:run:allure:tes": "npm run run:test:tags && npm run allure:report"
@@ -38,7 +34,6 @@
     "cypress-browser-permissions": "^1.1.0",
     "cypress-cucumber-attach-screenshots-to-failed-steps": "^1.0.0",
     "cypress-file-upload": "^5.0.8",
-    "cypress-for-drupal": "^1.0.14",
     "cypress-on-fix": "^1.0.2",
     "cypress-plugin-api": "^2.11.1",
     "cypress-real-events": "^1.11.0",

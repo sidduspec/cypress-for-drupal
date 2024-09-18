@@ -2,8 +2,8 @@ const fs = require('fs-extra');
 const path = require('path');
 
 // Resolve the correct source directory (relative to the package location in node_modules)
-const sourceDir = '.' // Assuming scaffold.js is in the root of your package
-const destinationDir = '../../'; // This will be the root of the project where the package is installed
+const sourceDir = '.';
+const destinationDir = '../../';
 
 console.log('Source Directory:', sourceDir);
 console.log('Destination Directory:', destinationDir);
@@ -18,12 +18,14 @@ if (sourceDir === destinationDir) {
 const itemsToCopy = [
   'cypress',
   'config',
-  'cypress.config.js'
+  'cypress.config.js',
+  'package.json',
+  '.gitignore'
 ];
 
 itemsToCopy.forEach(item => {
-  const src = path.join(sourceDir, item); // source within the package
-  const dest = path.join(destinationDir, item); // destination in the project
+  const src = path.join(sourceDir, item);
+  const dest = path.join(destinationDir, item);
 
   // Copy each item
   fs.copy(src, dest, (err) => {
