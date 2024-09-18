@@ -2,7 +2,7 @@ const fs = require('fs-extra');
 const path = require('path');
 
 // Correct source directory - it directly points to node_modules/cypress-for-drupal
-const sourceDir = path.join(__dirname, 'cypress-for-drupal'); // Assuming `cypress-for-drupal` is directly in the package
+const sourceDir = path.join(__dirname, '.'); // Assuming `cypress-for-drupal` is directly in the package
 console.log(sourceDir)
 const destinationDir = path.join(process.cwd()); // The root of the project where the package is installed
 
