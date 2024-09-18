@@ -1,6 +1,6 @@
 {
   "name": "cypress-for-drupal",
-  "version": "1.0.49",
+  "version": "1.0.50",
   "description": "Automate Drupal Applications at ease",
   "main": "index.js",
   "scripts": {
