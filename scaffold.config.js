@@ -18,7 +18,9 @@ if (sourceDir === destinationDir) {
 const itemsToCopy = [
   'cypress',
   'config',
-  'cypress.config.js'
+  'cypress.config.js',
+  'package.json',
+  'custom.cypress.config.js'
 ];
 
 itemsToCopy.forEach(item => {

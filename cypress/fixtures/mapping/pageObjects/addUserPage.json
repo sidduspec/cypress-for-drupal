@@ -10,5 +10,4 @@
     "durpal_add_user_button": "#block-claro-local-actions > ul > li > a",
     "drupal_cancel_account_button": "#edit-delete",
     "drupal_delete_user_account": ":nth-child(4) > .form-item__label"
-
 }
