@@ -4,7 +4,7 @@ import 'cypress-real-events';
 import '@mmisty/cypress-allure-adapter/support';
 
 //Import business keyword library
-import './keywords/businessKeywords/druaplCommands.js'
+import './keywords/businessKeywords/drupal-commands.js'
 
 //import generic keyword library
 import './keywords/genericKeywords/check-uncheck-the-checkbox'
