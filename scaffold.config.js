@@ -3,7 +3,7 @@ const path = require('path');
 
 // Resolve the correct source directory (relative to the package location in node_modules)
 const sourceDir = '.';
-const destinationDir = '../../test';
+const destinationDir = './test';
 
 console.log('Source Directory:', sourceDir);
 console.log('Destination Directory:', destinationDir);
@@ -20,7 +20,8 @@ const itemsToCopy = [
   'config',
   'cypress.config.js',
   'package.json',
-  'custom.cypress.config.js'
+  'custom.cypress.config.js',
+  '.gitignore'
 ];
 
 itemsToCopy.forEach(item => {
