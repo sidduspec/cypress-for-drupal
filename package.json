@@ -1,15 +1,16 @@
 {
   "name": "cypress-for-drupal",
-  "version": "2.0.0",
+  "version": "1.0.0",
   "description": "Automate Drupal Applications at ease",
   "main": "index.js",
   "scripts": {
     "postinstall": "echo 'postinstall script triggered to scaffold Cypress' && node scaffold.config.js",
-    "run:test:with:custom:config": "cypress run --config-file sample.cypress.config.js",
+    "run:test:with:custom:config": "cypress run --config-file custom.cypress.config.js",
     "run:test:prod": "cypress run --env configFile=prod",
     "run:test:dev": "cypress run --env configFile=dev",
     "run:test:stage": "cypress run --env configFile=stage",
     "run:test:tags": "cypress run --env configFile=stage,TAGS=\"@smoke\"",
+    "open:test:with:custom:config": "cypress open --config-file custom.cypress.config.js",
     "open:test:prod": "cypress open --env configFile=prod",
     "open:test:dev": "cypress open --env configFile=dev",
     "open:test:stage": "cypress open --env configFile=stage",
