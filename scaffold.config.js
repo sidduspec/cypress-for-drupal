@@ -19,7 +19,6 @@ const itemsToCopy = [
   'cypress',
   'config',
   'cypress.config.js',
-  'package.json',
   'custom.cypress.config.js'
 ];
 
