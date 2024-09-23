@@ -2,6 +2,7 @@ import './commands';
 import 'cypress-plugin-api';
 import 'cypress-real-events';
 import '@mmisty/cypress-allure-adapter/support';
+import { getDate } from './methods/getDate.js';
 
 //Import business keyword library
 import './keywords/businessKeywords/drupal-commands.js'
@@ -35,6 +36,15 @@ Cypress.on('uncaught:exception', (err, runnable) => {
   return false;
 });
 const config = Cypress.config();
+
+// The name of the cookie holding whether the user has accepted
+const COOKIE_NAME = "OptanonAlertBoxClosed";
+// The value meaning that user has accepted the cookie policy
+const COOKIE_VALUE = getDate;
+
+Cypress.on("window:before:load", window => {
+  window.document.cookie = `${COOKIE_NAME}=${COOKIE_VALUE}`;
+});
 
 // allure report configuration
 const browser = Cypress.browser;

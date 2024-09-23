@@ -2,10 +2,10 @@ Feature: Contact Form Submission workflow
 
     Background: User Navigation
         Given the user visit the '/contact-us' form of discover semi
-    
+
     @smoke
     Scenario: Contact Form Submission
-        When the user fills in the contact form
+        When the user fill in the contact form
             | Field                              | Value        | FieldType |
             | discover_contact_form_firstname    | Siddu        | input     |
             | discover_contact_form_lastname     | HS           | input     |

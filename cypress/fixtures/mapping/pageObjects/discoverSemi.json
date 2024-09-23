@@ -7,7 +7,4 @@
     "discover_contact_form_reason": "#mktoContactUsReason",
     "discover_contact_form_message": "#mktoCommentCapture",
     "discover_contact_form_submit": ".mktoButtonRow > span > button"
-
-    
-
 }

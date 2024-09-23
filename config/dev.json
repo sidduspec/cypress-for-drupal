@@ -1,8 +1,8 @@
 {
-    "baseUrl": "https://practiced10.ddev.site/en",
-    "env": {
-      "TAGS": "not @ignore-env-stage",
-      "username": "testuser",
-      "password": "testpassword"
-      }
-    }
+  "baseUrl": "https://abacosystemsd9dev.prod.acquia-sites.com/",
+  "env": {
+    "TAGS": "not @ignore-env-stage",
+    "admin_user": "prasanna",
+    "admin_password": "Welcome@1234"
+  }
+}

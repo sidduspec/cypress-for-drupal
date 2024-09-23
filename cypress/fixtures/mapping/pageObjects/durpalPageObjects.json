@@ -1,12 +1,18 @@
 {
     "drupal_basic_page_save_button": "div[data-drupal-selector='edit-actions'] > [data-drupal-selector='edit-submit']",
+    "drupal_basic_dropdown_actions": "li[class*='dropbutton-action'] > a",
+    "drupal_basic_action_input_submit": "input[type='submit']",
+    "drupal_content_type_selector": ".block-system-main-block > dl > div",
+    "drupal_content_title": "input[name='title[0][value]']",
     "drupal_content_save_as_dropdown": "select[data-drupal-selector='edit-moderation-state-0-state']",
     "drupal_content_save_button": "input[data-drupal-selector='edit-submit']",
     "drupal_content_list_page_edit_content_button": "td.views-field-operations a[href*='/edit']",
     "drupal_content_delete_button": "#edit-delete",
-    "drupal_home_logout_button": "a[data-drupal-link-system-path='user/logout']",
+    "drupal_content_edit_actions": "[data-drupal-selector='edit-actions']",
+    "drupal_account_logout": "ul.menu-account >  li > a[href*='/en/user/logout']",
     "drupal_taxonomy_list_items_button": "li.list.dropbutton__item.dropbutton-action > a",
     "drupal_taxonomy_term_name_field": "#edit-name-0-value",
+    "drupal_taxonomy_manage_overview": "li[class*='dropbutton-action'] > a[href*='/taxonomy/manage/tags/overview']",
     "drupal_menu_name_field": "#edit-label",
     "drupal_menu_link_title": "#edit-title-0-value",
     "druapl_menu_link_field": "#edit-link-0-uri",
@@ -16,6 +22,11 @@
     "drupal_save_block_button": ".ui-dialog > div:nth-child(3)",
     "drupal_save_blocks_button": "div[data-drupal-selector='edit-actions']",
     "drupal_config_maintenance_mode_checkbox": "#edit-maintenance-mode",
-    "drupal_config_page": ".layout-column"
-
+    "drupal_config_maintenance_mode_message_area": "textarea[name='maintenance_mode_message']",
+    "drupal_config_page": ".layout-column",
+    "drupal_CKeditor_source_editing_button": "button[class*='ck-source-editing-button'",
+    "drupal_CKeditor_textarea": ".ck-source-editing-area > textarea",
+    "drupal_layoutbuilder_add_block_button": ".layout-builder__add-block",
+    "drupal_layoutbuilder_filter_input": "[id='drupal-off-canvas'] > div > div > input",
+    "drupal_layoutbuilder_block_list": "div[class='details-wrapper'] >ul[class='links']"
 }

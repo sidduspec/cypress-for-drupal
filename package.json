@@ -18,7 +18,7 @@
     "run:test:dev:smoke": " cypress run --headless --browser chrome --env configFile=dev TAGS='<your-tab>'",
     "run:test:stage:smoke": " cypress run --headless --browser chrome --env configFile=stage TAGS='<your-tab>'",
     "cy:verify": "cypress verify",
-    "allure:report": "allure generate cypress/reports/allure-results --clean -o cypress/reports/allure-report",
+    "allure:report": "allure generate cypress/reports/allure-results --clean -o cypress/reports/allure-report && allure open cypress/reports/allure-report",
     "cy:run:allure:tes": "npm run run:test:tags && npm run allure:report"
   },
   "keywords": [

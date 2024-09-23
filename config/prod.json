@@ -1,8 +1,8 @@
 {
-    "baseUrl": "https://practiced10.ddev.site/en",
-    "env": {
-      "TAGS": "not @ignore-env-stage",
-      "username": "testuser",
-      "password": "testpassword"
-      }
-    }
+  "baseUrl": "https://practiced10.ddev.site/en",
+  "env": {
+    "TAGS": "not @ignore-env-stage",
+    "username": "testuser",
+    "password": "testpassword"
+  }
+}

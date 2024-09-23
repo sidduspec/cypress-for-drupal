@@ -1,26 +1,12 @@
 import { Given, When, And, Then, DataTable } from "@badeball/cypress-cucumber-preprocessor";
 import * as selectors from "../mappings-importer";
-import { generateRandomNumber } from "../../methods/getRandomString";
 
 Given('the user navigates to the content creation page {string}', (url) => {
     cy.visit(url, { failOnStatusCode: false });
 });
 
-When('the user selects {string}', (contentType) => {
-    cy.selectType(contentType);
-});
-
-When('the user selects {string} as the content type', (contentType)=>{
-    cy.selectType(contentType);
-})
-
-When('the user enters a title {string}', (title) => {
-    cy.enterTitle(title);
-});
-
-When('the user enters a body {string}', (body) => {
-    cy.get('button[class*="ck-source-editing-button"]').click();
-    cy.enterBody(body);
+Given('the user navigates to the content listing page {string}', (url) => {
+    cy.visit(url);
 });
 
 When('the user select {string} from {string} to publish the article', (option, dropdownSelection) => {
@@ -29,10 +15,6 @@ When('the user select {string} from {string} to publish the article', (option, d
 
 Then('the article should be created successfully', () => {
     cy.verifyArticleCreation();
-});
-
-Given('the user navigates to the content listing page {string}', (url) => {
-    cy.visit(url);
 });
 
 Then('the user filter for unpublished content {string} and clicks on {string} to edit', (contentTitle, editButtonLocator) => {
@@ -73,11 +55,11 @@ Then('the article {string} should be published', (articleName) => {
     });
 })
 
-Then('the user log out of the application as the content is created successfully', ()=>{
-    cy.get('ul.menu-account >  li > a[href*="/en/user/logout"]').click({force:true})
+Then('the user log out of the application as the content is created successfully', () => {
+    cy.get(selectors.drupal_account_logout).click({ force: true })
 })
 
-When('the user filter for Article {string} and clicks on {string} to navigate to edit page', (contentTitle, editButtonLocator)=>{
+When('the user filter for Article {string} and clicks on {string} to navigate to edit page', (contentTitle, editButtonLocator) => {
     cy.get('#edit-title').clear().type(contentTitle);
     cy.get('input[value="Filter"]').click();
 
@@ -96,24 +78,24 @@ When('the user filter for Article {string} and clicks on {string} to navigate to
     });
 })
 
-Then('the user delete the Article', ()=>{
-    cy.clickOnTab('Delete')
-    cy.get('#block-claro-content > form > div').contains('Delete').click({force:true})
+Then('the user delete the Article', () => {
+    cy.clickOnContentNavigationTab('Delete')
+    cy.get(selectors.drupal_content_edit_actions).contains('Delete').click({ force: true })
 })
 
-When('the user navigate to {string} to add user', (path)=>{
+When('the user navigate to {string} to add user', (path) => {
     cy.visit(path);
 })
 
-When('the user clicks on {string} button to navigate to create user page', (buttonselector)=>{
+When('the user clicks on {string} button to navigate to create user page', (buttonselector) => {
     cy.customClick(buttonselector);
 })
 
-When('the user enters mandtotory field values to create a user', (dataTable)=>{
+When('the user enters mandtotory field values to create a user', (dataTable) => {
     cy.fillForm(dataTable);
 })
 
-Then('the user test user {string} is deleted from the system', (username)=>{
+Then('the test user {string} is deleted from the system', (username) => {
     cy.get('#edit-user').clear().type(username);
     cy.get('input[value="Filter"]').click();
 
@@ -125,7 +107,7 @@ Then('the user test user {string} is deleted from the system', (username)=>{
             const statusText = $row.find('td.views-field-status').text().trim();
 
             if (titleText === username && statusText === 'Blocked') {
-                cy.wrap($row).find("td.views-field-operations a[href*='/edit']").click({force:true});
+                cy.wrap($row).find("td.views-field-operations a[href*='/edit']").click({ force: true });
                 return false;
             }
         });
@@ -136,29 +118,19 @@ Then('the user test user {string} is deleted from the system', (username)=>{
     cy.contains(`Account ${username} has been deleted.`)
 })
 
-Then('the user selects {string} and click on {string}',(text, locator)=>{
-    cy.editRowWithTitle('table tbody', text)
-})
-
-Then('the user enters {string} in the field {string}',(text, locator)=>{
-    let dynamicMenuName = `${text}${generateRandomNumber()}`
-    Cypress.env('menuName', dynamicMenuName);
-    cy.enterValueInField(dynamicMenuName, locator)
-})
-
-Then('the user should see the message stating the successful Menu creation', ()=>{
+Then('the user should see the message stating the successful Menu creation', () => {
     const menuName = Cypress.env('menuName');
     const expectedMessage = `Menu ${menuName} has been added.`;
     cy.contains(expectedMessage).should('be.visible');
 })
 
-Then('the user adds a link {string} with the path {string} to the {string}', (title, link, linkLocator)=>{
+Then('the user adds a link {string} with the path {string} to the {string}', (title, link, linkLocator) => {
     cy.enterValueInField(title, 'drupal_menu_link_title')
     cy.enterValueInField(link, linkLocator)
     cy.customClick('druapl_menu_link_submit_button');
 })
 
-Then('the link {string} should be added to the menu', (linkTitle)=>{
+Then('the link {string} should be added to the menu', (linkTitle) => {
     cy.contains(Cypress.env('menuName'));
     cy.get('table tbody tr').then($rows => {
         Cypress.$($rows).each((index, row) => {
@@ -170,31 +142,83 @@ Then('the link {string} should be added to the menu', (linkTitle)=>{
     })
 })
 
-Then('the user selects the {string} region from {string} and clicks on {string}', (blockSelector, blockTitle, editButton)=>{
-    cy.selectBlockContentAndEdit(blockTitle, blockSelector,editButton );
+Then('the user selects the {string} region from {string} and clicks on {string}', (blockSelector, blockTitle, editButton) => {
+    cy.selectBlockContentAndEdit(blockTitle, blockSelector, editButton);
 })
 
-Then('the user selects the {string} block  from {string} and clicks on {string}',(blockSelector, blockTitle, editButton)=>{
-    cy.selectBlockContentAndEdit(blockTitle, blockSelector,editButton );
+Then('the user selects the {string} block  from {string} and clicks on {string}', (blockSelector, blockTitle, editButton) => {
+    cy.selectBlockContentAndEdit(blockTitle, blockSelector, editButton);
 })
 
 When('the user clicks the {string} button at {string}', (buttonText, locator) => {
     cy.get(selectors[locator]).contains(buttonText).click();
 });
 
-When('the user selects {string} from config page {string}', (option, locator)=>{
+When('the user selects {string} from config page {string}', (option, locator) => {
     cy.get(selectors[locator]).contains(option).click();
 })
 
-When('the user enables maintenance mode by clicking on {string} checkbox', (locator)=>{
-    cy.get(selectors[locator]).then($checkbox =>{
-        if ($checkbox.is(':checked')) { // Check if the checkbox is checked
-            cy.wrap($checkbox).uncheck(); // Uncheck the checkbox if it is checked
-          }
+When('the user enables maintenance mode by clicking on {string} checkbox', (locator) => {
+    cy.get(selectors[locator]).then($checkbox => {
+        if ($checkbox.is(':checked')) {
+            cy.wrap($checkbox).uncheck();
+        }
     })
     cy.customClick(locator);
 })
 
-When('the site should be in maintenance mode', ()=>{
-    cy.get('textarea[name="maintenance_mode_message"]').contains('site is currently under maintenance')
+When('the user disable maintenance mode by clicking on {string} checkbox', (locator) => {
+    cy.get(selectors[locator]).then($checkbox => {
+        if ($checkbox.is(':checked')) {
+            cy.wrap($checkbox).uncheck();
+        }
+    })
 })
+
+When('the site should be in maintenance mode', () => {
+    cy.get(selectors.drupal_config_maintenance_mode_message_area).contains('site is currently under maintenance')
+})
+
+When('the user deletes the menu {string}', (menuName) => {
+    cy.visit('/admin/structure/menu')
+    const name = Cypress.env('menuName')
+    const nametoLower = name.toLowerCase().replace(/[^a-z0-9]/g, '-');
+    cy.contains(name).parent().within(() => {
+        cy.get(`li > a[href*="/menu/manage/${nametoLower}"]`).contains('Edit menu').click();
+    });
+    cy.get('form').within(() => {
+        cy.get(selectors.drupal_content_edit_actions).contains('Delete').click();
+    });
+    cy.get(selectors.drupal_basic_action_input_submit).contains('Delete').click({ force: true });
+});
+
+When('the user deletes the taxonomy term {string}', (termName) => {
+    cy.visit('/admin/structure/taxonomy/manage/tags/overview')
+    cy.contains(termName).parents().eq(3).within(() => {
+        cy.get(selectors.drupal_taxonomy_manage_overview).contains('Edit').click();
+    });
+    cy.get('form').within(() => {
+        cy.get(selectors.drupal_content_edit_actions).contains('Delete').click();
+    });
+    cy.get(selectors.drupal_basic_action_input_submit).contains('Delete').click({ force: true });
+});
+
+When('the user deletes the block {string} from the {string} region', (blockName, regionName) => {
+    cy.visit('/admin/structure/block');
+
+    // Locate the row for the region
+    cy.contains('tr', regionName).then(($regionRow) => {
+        // Get the next rows until we find the block or reach the end of the region section
+        cy.wrap($regionRow).nextUntil(':not(tr)').each(($row) => {
+            // Check if the current row contains the block name
+            if ($row.text().includes(blockName)) {
+                cy.wrap($row).within(() => {
+                    cy.get(selectors.drupal_basic_dropdown_actions).contains('Remove').click({ force: true });
+                });
+            }
+        });
+    });
+    cy.get(selectors.drupal_basic_action_input_submit).contains('Remove').click({ force: true });
+});
+
+
