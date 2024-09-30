@@ -5,7 +5,7 @@ import '@mmisty/cypress-allure-adapter/support';
 import { getDate } from './methods/getDate.js';
 
 //Import business keyword library
-import './keywords/businessKeywords/drupal-commands.js'
+import './keywords/customKeywords/drupal-commands.js'
 
 //import generic keyword library
 import './keywords/genericKeywords/check-uncheck-the-checkbox'

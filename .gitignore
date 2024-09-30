@@ -3,8 +3,13 @@ cypress/videos
 cypress/screenshots
 cypress/reports
 cypress/downloads
+cypress/.DS_Store
 new-report
 .vscode
+.DS_Store
+runner-results
+multi-reporter-config.json
+
 
 
 # test documents 

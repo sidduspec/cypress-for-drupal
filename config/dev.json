@@ -1,8 +1,6 @@
 {
-  "baseUrl": "https://abacosystemsd9dev.prod.acquia-sites.com/",
+  "baseUrl": "https://drupal-automation.specbee.site/",
   "env": {
-    "TAGS": "not @ignore-env-stage",
-    "admin_user": "prasanna",
-    "admin_password": "Welcome@1234"
+    "TAGS": "not @ignore-env-stage"
   }
 }

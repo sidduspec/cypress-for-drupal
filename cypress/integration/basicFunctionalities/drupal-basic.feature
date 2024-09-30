@@ -1,7 +1,7 @@
 Feature: Add, Edit and Delete of content
 
     Background: Login
-        Given the user login to drupal admin dashboard with username 'admin_user' and password 'admin_password'
+        Given the user login to drupal admin dashboard with username 'username' and password 'password'
 
     @smoke
     Scenario: Create a test Article

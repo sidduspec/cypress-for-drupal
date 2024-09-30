@@ -1,0 +1,7 @@
+{
+    "contact_form_firstname": "#edit-name",
+    "contact_form_email": "#edit-mail",
+    "contact_form_subject": "#edit-subject-0-value",
+    "contact_form_message": "#edit-message-0-value",
+    "contact_form_submit": "#edit-submit"
+}

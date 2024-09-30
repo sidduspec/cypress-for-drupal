@@ -1,5 +1,4 @@
 {
-    "homepage_login_button": ".menu-account__link",
     "login_page_title": "[class='page-title']",
     "login_username_field": "#edit-name",
     "login_password_field": "#edit-pass",

@@ -1,8 +1,6 @@
 {
-  "baseUrl": "https://practiced10.ddev.site/en",
+  "baseUrl": "https://drupal-automation.specbee.site/",
   "env": {
-    "TAGS": "not @ignore-env-stage",
-    "username": "testuser",
-    "password": "testpassword"
+    "TAGS": "not @ignore-env-stage"
   }
 }

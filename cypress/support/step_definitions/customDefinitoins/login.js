@@ -6,7 +6,7 @@ Given('the user clicks on the {string} to navigate to login page', (locator) => 
 })
 
 Then('the user should see the profile for {string} in the toolbar section', (user) => {
-  cy.get(selectors.homepage_toolbar).contains(Cypress.env(user));
+  cy.get(selectors.drupal_homepage_toolbar).contains(Cypress.env(user));
 })
 
 Given('the user login to drupal admin dashboard with username {string} and password {string}', (username, password) => {

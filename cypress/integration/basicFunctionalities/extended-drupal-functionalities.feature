@@ -1,7 +1,7 @@
 Feature: Extended Functional Testing of Drupal Application
 
     Background: Login to Druapl admin dashboard
-        Given the user login to drupal admin dashboard with username 'admin_user' and password 'admin_password'
+        Given the user login to drupal admin dashboard with username 'username' and password 'password'
 
     @smoke
     Scenario: Adding a user

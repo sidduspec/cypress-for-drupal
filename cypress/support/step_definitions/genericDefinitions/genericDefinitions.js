@@ -39,7 +39,7 @@ Then('the user clicks {string}', (element) => {
   cy.customClick(element);
 })
 
-Then('the user selects {string} and click on {string}', (text, locator) => {
+When('the user selects {string} and click on {string}', (text, locator) => {
   cy.editRowWithTitle('table tbody', text)
 })
 

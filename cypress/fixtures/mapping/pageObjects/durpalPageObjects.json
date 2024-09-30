@@ -1,4 +1,6 @@
 {
+    "drupal_homepage_toolbar": "#toolbar-bar",
+    "drupal_homepage_announcement_feed_block": "[class*='block-announcements-feed']",
     "drupal_basic_page_save_button": "div[data-drupal-selector='edit-actions'] > [data-drupal-selector='edit-submit']",
     "drupal_basic_dropdown_actions": "li[class*='dropbutton-action'] > a",
     "drupal_basic_action_input_submit": "input[type='submit']",
@@ -9,7 +11,7 @@
     "drupal_content_list_page_edit_content_button": "td.views-field-operations a[href*='/edit']",
     "drupal_content_delete_button": "#edit-delete",
     "drupal_content_edit_actions": "[data-drupal-selector='edit-actions']",
-    "drupal_account_logout": "ul.menu-account >  li > a[href*='/en/user/logout']",
+    "drupal_account_logout": "ul.menu-account >  li > a[href*='/user/logout']",
     "drupal_taxonomy_list_items_button": "li.list.dropbutton__item.dropbutton-action > a",
     "drupal_taxonomy_term_name_field": "#edit-name-0-value",
     "drupal_taxonomy_manage_overview": "li[class*='dropbutton-action'] > a[href*='/taxonomy/manage/tags/overview']",

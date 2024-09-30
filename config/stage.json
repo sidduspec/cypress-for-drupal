@@ -1,9 +1,6 @@
 {
-  "baseUrl": "https://practiced10.ddev.site",
+  "baseUrl": "https://drupal-automation.specbee.site/",
   "env": {
-    "TAGS": "not @ignore-env-stage",
-    "baseUrl2": "https://discover.semi.org",
-    "admin_user": "prasannahs",
-    "admin_password": "Welcome@123"
+    "TAGS": "not @ignore-env-stage"
   }
 }
