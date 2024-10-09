@@ -7,8 +7,12 @@ When('the user selects the {string} component from the available components list
     cy.get(selectors.drupal_layoutbuilder_block_list).contains(componentName).click(); // Select the component
 });
 
-When('the user clicks the {string} button', (buttonText) => {
-    cy.get('button').contains(buttonText).click(); // Click the Save button
+When('the user click on the {string} button to apply the component', (button)=>{
+    cy.get(selectors[button]).click();
+})
+
+When('the user click on the {string} button to save the layout', (button) => {
+    cy.get(selectors[button]).contains('Save layout').click(); // Click the Save button
 });
 
 Then('the user should see the Announcement Feed block {string} on the landing page', (locator) => {

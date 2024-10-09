@@ -28,7 +28,8 @@
     "drupal_config_page": ".layout-column",
     "drupal_CKeditor_source_editing_button": "button[class*='ck-source-editing-button'",
     "drupal_CKeditor_textarea": ".ck-source-editing-area > textarea",
-    "drupal_layoutbuilder_add_block_button": ".layout-builder__add-block",
+    "drupal_layoutbuilder_add_block_button": "#layout-builder-add-block > input[value='Add block']",
     "drupal_layoutbuilder_filter_input": "[id='drupal-off-canvas'] > div > div > input",
-    "drupal_layoutbuilder_block_list": "div[class='details-wrapper'] >ul[class='links']"
+    "drupal_layoutbuilder_block_list": "div[class='details-wrapper'] >ul[class='links']",
+    "drupal_layoutbuilder_save_layout_button": "input[value='Save layout']"
 }
