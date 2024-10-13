@@ -3,5 +3,5 @@
     "contact_form_email": "#edit-mail",
     "contact_form_subject": "#edit-subject-0-value",
     "contact_form_message": "#edit-message-0-value",
-    "contact_form_submit": "#edit-submit"
+    "contact_form_submit": "#contact-message-feedback-form > #edit-actions > #edit-submit"
 }

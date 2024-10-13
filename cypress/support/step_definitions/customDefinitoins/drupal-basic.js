@@ -9,6 +9,10 @@ Given('the user navigates to the content listing page {string}', (url) => {
     cy.visit(url);
 });
 
+Then('the user should see a field labeled {string}', (label) => {
+    cy.get('#edit-field-contact-date-and-time-wrapper').contains(label)  // Ensure the label exists
+});
+
 When('the user select {string} from {string} to publish the article', (option, dropdownSelection) => {
     cy.selectFromDropdown(option, dropdownSelection)
 })
