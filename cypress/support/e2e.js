@@ -29,6 +29,8 @@ import './keywords/genericKeywords/verify-cookie'
 import './keywords/genericKeywords/verify-count-in-a-field'
 import './keywords/genericKeywords/verify-titles'
 import './keywords/genericKeywords/wait'
+import './keywords/genericKeywords/lighthouse-audit.js'
+import { before } from 'mocha';
 
 
 Cypress.on('uncaught:exception', (err, runnable) => {

@@ -1,6 +1,7 @@
 const { defineConfig } = require("cypress");
 const preprocessor = require("@badeball/cypress-cucumber-preprocessor");
 const browserify = require("@badeball/cypress-cucumber-preprocessor/browserify");
+const { runLighthouse, runLighthouseForUrls } = require('./cypress/support/methods/lighthouseRunner');
 
 const {
   configureAllureAdapterPlugins,
@@ -20,6 +21,19 @@ function getConfigurationByFile(file) {
 
   return fs.readJson(pathToConfigFile);
 }
+
+const deleteReportsFolder = () => {
+  const reportsPath = 'cypress/reports/lighthouse-reports';
+
+  if (fs.existsSync(reportsPath)) {
+    fs.readdirSync(reportsPath).forEach((file) => {
+      const filePath = path.join(reportsPath, file);
+      if (fs.lstatSync(filePath).isFile()) {
+        fs.unlinkSync(filePath);
+      }
+    });
+  };
+};
 
 module.exports = defineConfig({
   e2e: {
@@ -54,11 +68,20 @@ module.exports = defineConfig({
     },
     async setupNodeEvents(cypressOn, config) {
       // bind to the event we care about
+      deleteReportsFolder();
       const on = require("cypress-on-fix")(cypressOn);
       await preprocessor.addCucumberPreprocessorPlugin(on, config);
       on("file:preprocessor", browserify.default(config));
       const reporter = configureAllureAdapterPlugins(on, config);
       on('task', {
+        runLighthouse({ url, outputFilePath }) {
+          return runLighthouse(url, outputFilePath);
+        },
+
+        // Task to run Lighthouse for multiple URLs
+        runLighthouseForUrls(urls) {
+          return runLighthouseForUrls(urls);
+        },
         readFileMaybe(filename) {
           if (fs.existsSync(filename)) {
             return fs.readFileSync(filename, 'utf8');
@@ -66,22 +89,22 @@ module.exports = defineConfig({
           return null;
         },
       });
-      on("before:browser:launch", (browser = {}, options) => {
+      on("before:browser:launch", (browser = {}, launchOptions) => {
         if (fs.existsSync(downloadDirectory)) {
           fs.rmdirSync(downloadDirectory, { recursive: true });
         }
 
         if (browser.family === "chromium" && browser.name !== "electron") {
-          options.preferences.default["download"] = {
+          launchOptions.preferences.default["download"] = {
             default_directory: downloadDirectory,
           };
-          return options;
+          return launchOptions;
         }
 
         if (browser.family === "firefox") {
-          options.preferences["browser.download.dir"] = downloadDirectory;
-          options.preferences["browser.download.folderList"] = 2;
-          return options;
+          launchOptions.preferences["browser.download.dir"] = downloadDirectory;
+          launchOptions.preferences["browser.download.folderList"] = 2;
+          return launchOptions;
         }
       });
 
