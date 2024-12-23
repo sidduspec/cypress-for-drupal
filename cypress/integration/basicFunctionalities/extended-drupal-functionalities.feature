@@ -57,7 +57,7 @@ Feature: Extended Functional Testing of Drupal Application
         When the user deletes the block 'Search form' from the 'Pre-header' region
         Then the user should see the message 'The block Search form has been removed from the Pre-header region.'
 
-    @smoke
+    @smoke @regresison
     Scenario: Configuring Site Maintenance Mode
         When the user navigates to '/admin/config'
         And the user selects 'Maintenance mode' from config page 'drupal_config_page'

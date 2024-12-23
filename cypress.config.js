@@ -1,42 +1,46 @@
+const fs = require("fs-extra");
+const path = require("path");
+const { exec } = require("child_process");
 const { defineConfig } = require("cypress");
 const preprocessor = require("@badeball/cypress-cucumber-preprocessor");
 const browserify = require("@badeball/cypress-cucumber-preprocessor/browserify");
-
 const {
   configureAllureAdapterPlugins,
 } = require("@mmisty/cypress-allure-adapter/plugins");
 
-// promisified fs module
-const fs = require("fs-extra");
-const path = require("path");
-
 const RESULT_FOLDER = "results";
 const downloadDirectory = path.join(__dirname, "..", RESULT_FOLDER);
 
-logPath = process.env.LOG_DIR || path.join(__dirname, "./cypress");
+let logPath = process.env.LOG_DIR || path.join(__dirname, "./cypress");
 
 function getConfigurationByFile(file) {
   const pathToConfigFile = path.resolve(".", "config", `${file}.json`);
-
   return fs.readJson(pathToConfigFile);
 }
 
 module.exports = defineConfig({
   e2e: {
     specPattern: [
-      "cypress/integration/**/*.feature",  // Include all feature files in the integration folder
+      "cypress/integration/**/*.feature", // Include all feature files in the integration folder
+    ],
+    stepDefinitions: [
+      "cypress/support/step_definitions/**/**/*.{js,ts}",
+      "cypress/support/step_definitions/**/*.{js,ts}",
     ],
     video: false,
     retries: 0,
     chromeWebSecurity: false,
     screenshotOnRunFailure: true,
-    defaultCommandTimeout: 10000,
-    pageLoadTimeout: 25000,
+    defaultCommandTimeout: 15000,
+    pageLoadTimeout: 20000,
+    taskTimeout: 20000,
     multiple: true,
     viewportWidth: 1920,
     viewportHeight: 1080,
     restartBrowserBetweenSpecFiles: true,
     env: {
+      filterSpecs: true,
+      omitFiltered: true,
       browserPermissions: {
         notifications: "allow",
         geolocation: "allow",
@@ -45,7 +49,6 @@ module.exports = defineConfig({
       requestMode: true,
       hideCredentials: true,
       allure: true,
-      allureSkipCommands: "auth",
       allureResults: "cypress/reports/allure-results",
       allureCleanResults: true,
       allureShowDuplicateWarn: true,
@@ -55,13 +58,52 @@ module.exports = defineConfig({
     async setupNodeEvents(cypressOn, config) {
       // bind to the event we care about
       const on = require("cypress-on-fix")(cypressOn);
+
       await preprocessor.addCucumberPreprocessorPlugin(on, config);
       on("file:preprocessor", browserify.default(config));
-      const reporter = configureAllureAdapterPlugins(on, config);
-      on('task', {
+
+      configureAllureAdapterPlugins(on, config);
+      on("task", {
+        runLinkChecker() {
+          return new Promise((resolve, reject) => {
+            const baseUrl = environmentFile.baseUrl;
+            const reportPath = path.resolve(
+              `cypress/reports/link-checks-${config.env.configFile || "dev"}.json`
+            );
+
+            // Command to run linkinator
+            const linkCheckCommand = `npx linkinator ${baseUrl} --format json`;
+            console.log(`Running link checker for: ${baseUrl}`);
+
+            exec(linkCheckCommand, (error, stdout, stderr) => {
+              if (error) {
+                console.error(`Error during link check: ${stderr}`);
+                return reject(error);
+              }
+              console.log(stdout);
+              console.log(`Link checker completed successfully.`);
+
+              try {
+                const report = JSON.parse(stdout);
+                if (!report.passed) {
+                  console.error("Broken links detected. Failing the test.");
+                  fs.writeFileSync(reportPath, stdout);
+                  return reject(new Error("Link checker failed. Broken links detected."));
+                }
+
+                fs.writeFileSync(reportPath, stdout);
+                console.log(`Link checker report saved to: ${reportPath}`);
+                resolve(`Report generated at: ${reportPath}`);
+              } catch (parseError) {
+                console.error(`Error parsing link checker output: ${parseError}`);
+                reject(parseError);
+              }
+            });
+          });
+        },
         readFileMaybe(filename) {
           if (fs.existsSync(filename)) {
-            return fs.readFileSync(filename, 'utf8');
+            return fs.readFileSync(filename, "utf8");
           }
           return null;
         },
@@ -86,12 +128,22 @@ module.exports = defineConfig({
       });
 
       config.screenshotsFolder = path.join(logPath, "screenshots");
-      // accept a configFile value or use qa by default
+
+      // Load environment-specific config
       const file = config.env.configFile || "dev";
       const featureTags = config.env.TAGS;
       const environmentFile = await getConfigurationByFile(file);
+
+      // Override config settings with environment-specific values if present
+      config.baseUrl = environmentFile.baseUrl || config.baseUrl;
+      config.defaultCommandTimeout =
+        environmentFile.defaultCommandTimeout || config.defaultCommandTimeout;
+      config.pageLoadTimeout =
+        environmentFile.pageLoadTimeout || config.pageLoadTimeout;
+      config.retries = environmentFile.retries || config.retries;
+
       const { baseUrl, env } = environmentFile;
-      config.env = { ...config.env, ...env };
+      config.env = { ...config.env, ...environmentFile.env };
       config.baseUrl = baseUrl;
       // Check if featureTags is not null, undefined, or an empty string;if not,assign its value to config.env.TAGS
       if (
@@ -102,14 +154,6 @@ module.exports = defineConfig({
         config.env.TAGS = featureTags;
       }
       return config;
-    },
-    addCucumberPreprocessorPlugin: {
-      stepDefinitions: [
-        "cypress/support/step_definitions/**/**/*.{js,ts}",
-        "cypress/support/step_definitions/**/*.{js,ts}"
-      ],
-      filterSpecs: true,
-      omitFiltered: true
     }
   },
 });

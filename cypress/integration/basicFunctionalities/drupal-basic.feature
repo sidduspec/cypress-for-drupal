@@ -3,7 +3,6 @@ Feature: Add, Edit and Delete of content
     Background: Login
         Given the user login to drupal admin dashboard with username 'username' and password 'password'
 
-    @smoke
     Scenario: Create a test Article
         When the user navigates to the content creation page '/node/add'
         And the user selects 'Article' from the admin list
@@ -14,7 +13,7 @@ Feature: Add, Edit and Delete of content
         And the user should see the message 'Article Test Article has been created.'
         And the user log out of the application as the content is created successfully
 
-    @smoke
+     @regresison
     Scenario: Publish the draft test Article
         When the user navigates to the content listing page '/admin/content'
         And the user filter for unpublished content 'Test Article' and clicks on 'drupal_content_list_page_edit_content_button' to edit
@@ -25,7 +24,7 @@ Feature: Add, Edit and Delete of content
         When the user filter for Article 'Test Article' and clicks on 'drupal_content_list_page_edit_content_button' to navigate to edit page
         Then the user delete the Article
 
-    @smoke
+    
     Scenario: Creating a Basic Page
         When the user navigates to the content creation page '/node/add'
         And the user selects 'Basic page' from the admin list

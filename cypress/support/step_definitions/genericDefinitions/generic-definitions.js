@@ -15,6 +15,10 @@ When('the user enter the body {string} in the CKeditor field {string}', (body, s
   cy.enterValueInField(body, selector);
 });
 
+Then('I logout of the application', () => {
+  cy.logout();
+})
+
 When('the user navigates to {string}', (path) => {
   cy.visit(path);
 })
@@ -47,4 +51,20 @@ Then('the user enters random title {string} in the field {string}', (text, locat
   let dynamicMenuName = `${text}${generateRandomNumber()}`
   Cypress.env('menuName', dynamicMenuName);
   cy.enterValueInField(dynamicMenuName, locator)
+})
+
+When('I navigate to {string}', (path) => {
+  cy.navigateToUrl(path);
+})
+
+When('I click on {string} button', (element) => {
+  cy.customClick(element);
+});
+
+Then('I should see the message {string}', (message) => {
+  cy.contains(message).should('be.visible');
+});
+
+Then('I should see the {string} in the main navigation menu {string}', (MenuTitle, elementSelector) => {
+  cy.checkFieldContains(elementSelector, MenuTitle)
 })
