@@ -1,0 +1,15 @@
+[
+    {
+      "attributes": { "id": "edit-name", "name": "user", "data-drupal-selector": "edit-name" },
+      "locator": "#edit-name"
+    },
+    {
+      "attributes": { "id": "edit-pass", "name": "pass", "data-drupal-selector": "edit-pass" },
+      "locator": "#edit-pass"
+    },
+    {
+      "attributes": { "id": "edit-submit", "data-drupal-selector": "edit-submit", "name": "op" },
+      "locator": "#edit-submit"
+    }
+  ]
+  
