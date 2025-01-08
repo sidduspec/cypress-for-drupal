@@ -4,8 +4,16 @@ import 'cypress-real-events';
 import '@mmisty/cypress-allure-adapter/support';
 import { getDate } from './methods/getDate.js';
 
-//Import business keyword library
+//Import custom keyword library
 import './keywords/customKeywords/drupal-commands.js'
+import './keywords/customKeywords/drupal-layout-builder.js'
+import './keywords/customKeywords/taxonomy-commands.js'
+import './keywords/customKeywords/media-commands.js'
+import './keywords/customKeywords/user-roles-permissions.js'
+import './keywords/customKeywords/paragraph-types.js'
+import './keywords/customKeywords/menu-commands.js'
+import './keywords/customKeywords/content-types.js'
+import './keywords/customKeywords/ckeditor-commands.js'
 
 //import generic keyword library
 import './keywords/genericKeywords/check-uncheck-the-checkbox'
@@ -29,7 +37,6 @@ import './keywords/genericKeywords/verify-cookie'
 import './keywords/genericKeywords/verify-count-in-a-field'
 import './keywords/genericKeywords/verify-titles'
 import './keywords/genericKeywords/wait'
-
 
 Cypress.on('uncaught:exception', (err, runnable) => {
   // returning false here prevents Cypress from failing the test 
@@ -56,8 +63,7 @@ const parsedUrl = new URL(url);
 const domain = parsedUrl.hostname;
 
 Cypress.Allure.writeEnvironmentInfo({
-  'Application': '<Your Application Name>',
-  'Test Type': 'Regression',
+  'Application': '<Your Applicaytion Name>',
   'Environment': domain,
   Browser: browserName,
   'Browser Version': browserVersion,
