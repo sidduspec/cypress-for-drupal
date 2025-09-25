@@ -1,4 +1,7 @@
 import './commands';
+
+import '@applitools/eyes-cypress/commands'
+
 import 'cypress-plugin-api';
 import 'cypress-real-events';
 import '@mmisty/cypress-allure-adapter/support';
@@ -14,6 +17,7 @@ import './keywords/customKeywords/paragraph-types.js'
 import './keywords/customKeywords/menu-commands.js'
 import './keywords/customKeywords/content-types.js'
 import './keywords/customKeywords/ckeditor-commands.js'
+import './keywords/customKeywords/drupal-login.js'
 
 //import generic keyword library
 import './keywords/genericKeywords/check-uncheck-the-checkbox'
@@ -37,11 +41,18 @@ import './keywords/genericKeywords/verify-cookie'
 import './keywords/genericKeywords/verify-count-in-a-field'
 import './keywords/genericKeywords/verify-titles'
 import './keywords/genericKeywords/wait'
+import './keywords/genericKeywords/applitools-eyes-commands.js'
+import './keywords/genericKeywords/reusable-commands.js'
 
 Cypress.on('uncaught:exception', (err, runnable) => {
   // returning false here prevents Cypress from failing the test 
   return false;
 });
+
+Cypress.on('window:before:load', (win) => {
+  cy.stub(win.console, 'error').as('consoleError');
+});
+
 const config = Cypress.config();
 
 // The name of the cookie holding whether the user has accepted

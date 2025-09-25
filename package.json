@@ -1,6 +1,6 @@
 {
   "name": "cypress-for-drupal",
-  "version": "2.2.2",
+  "version": "1.0.0",
   "description": "Automate Drupal Applications at ease",
   "main": "index.js",
   "scripts": {
@@ -29,20 +29,31 @@
     "cypress",
     "testing"
   ],
+  "author": 
+    {
+        "name": "Specbee",
+        "email": "developer@specbee.com",
+        "homepage": "https://specbee.com",
+        "role": "maintainer"
+    },
   "dependencies": {
+    "@applitools/eyes-cypress": "^3.52.0",
     "@badeball/cypress-cucumber-preprocessor": "^19.1.0",
     "@bahmutov/cypress-esbuild-preprocessor": "^2.2.3",
     "@cypress/browserify-preprocessor": "^3.0.2",
     "@mmisty/cypress-allure-adapter": "^0.15.2",
     "allure-commandline": "^2.24.1",
+    "cross-env": "^7.0.3",
     "cypress": "^13.15.1",
     "cypress-browser-permissions": "^1.1.0",
     "cypress-cucumber-attach-screenshots-to-failed-steps": "^1.0.0",
     "cypress-file-upload": "^5.0.8",
     "cypress-on-fix": "^1.0.2",
+    "cypress-parallel": "^0.14.0",
     "cypress-plugin-api": "^2.11.1",
     "cypress-real-events": "^1.11.0",
     "fs-extra": "^11.1.1",
+    "linkinator": "^6.1.2",
     "moment": "^2.29.4",
     "path": "^0.12.7",
     "simple-scaffold": "^2.3.0",

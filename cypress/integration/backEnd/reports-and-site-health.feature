@@ -6,17 +6,17 @@ Feature: Validate UHG Admin Reports and Site Health
   @smoke @regression @sanity
   Scenario: Validate there are no errors in the status report
     When I navigate to "/admin/reports/status"
-    Then I should see zero errors in the status report
+    Then I should see zero "Errors" in the status report
 
   @smoke @regression @sanity
   Scenario: Validate there are no warnings in the status report
     When I navigate to "/admin/reports/status"
-    Then I should see zero warnings in the status report
+    Then I should see zero "Warnings" in the status report
 
   @smoke @regression @sanity
   Scenario: Verify Cron Configuration in Admin Settings
     When I navigate to "/admin/config/system/cron"
-    Then I should see that detailed cron logging is enabled
+    Then I should see that detailed cron logging is "disabled"
     When I verify that the last cron run was within "24 hours"
 
   @smoke @regression @sanity

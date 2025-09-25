@@ -5,6 +5,9 @@ export function getFormattedDate() {
 }
 
 export function convertDateToISOFormat(dateString) {
-    const [day, month, year] = dateString.split('/');
-    return `${year}-${month}-${day}`;
+    const date = new Date(dateString);
+    if (isNaN(date)) {
+        throw new Error(`Invalid date: ${dateString}`);
+    }
+    return date.toISOString().split('T')[0]; // e.g. "2025-04-23"
 }

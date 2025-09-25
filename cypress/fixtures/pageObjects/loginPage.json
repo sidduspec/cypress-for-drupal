@@ -2,5 +2,5 @@
     "login_page_title": "[class='page-title']",
     "login_username_field": "#edit-name",
     "login_password_field": "#edit-pass",
-    "login_submit_button": "#user-login-form > #edit-actions > #edit-submit"
+    "login_submit_button": "#edit-submit"
 }

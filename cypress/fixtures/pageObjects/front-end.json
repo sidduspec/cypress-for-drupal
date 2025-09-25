@@ -1,0 +1,6 @@
+{
+    "login_form": "#user-login-form",
+    "image_selector": "#splide01-slide01 > div > div.card__image > div > div.field__item > img",
+    "random_element_to_click": "div.view__content > div > div:nth-child(1) > div:nth-child(1) > div > article > div.card__content > a",
+    "random_block_selector": ".asdso-content"
+}

@@ -1,19 +1,44 @@
-import * as selectors from '../../step_definitions/mappings-importer';
+import * as selectors from "../../step_definitions/mappings-importer";
+import { convertDateToISOFormat } from "../../methods/getDate";
 
-Cypress.Commands.add('enterValueInField', (value, elementSelector, detached = false) => {
-  const field = cy.get(selectors[elementSelector]).should('be.visible').wait(500);
-  if (detached) {
-    field.type(Cypress.env(value) || value, { force: true });
-  } else {
-    field.clear({force: true}).type(Cypress.env(value) || value, { force: true });
+Cypress.Commands.add(
+  "enterValueInField",
+  (value, elementSelector, detached = false) => {
+    const field = cy
+      .get(selectors[elementSelector])
+      .should("be.visible")
+      .wait(500);
+    if (detached) {
+      field.type(Cypress.env(value) || value, { force: true });
+    } else {
+      field
+        .clear({ force: true })
+        .type(Cypress.env(value) || value, { force: true });
+    }
   }
-});
+);
 
 Cypress.Commands.add("fillForm", (dataTable) => {
-  cy.intercept("**").as("allRequests");
+  // cy.intercept("POST", "/api/*").as("allRequests");
   dataTable.hashes().forEach((elem) => {
-    if (elem.FieldType === "input") {
+    if(elem.FieldType === "isMandatory") {
+      cy.get(selectors[elem.Field]).should("have.attr", "aria-required", "true");
+
+     }
+    if (elem.FieldType === "ckSection") {
+      if (elem.Value.startsWith("/")) {
+        cy.fixture(elem.Value).then((fixtureContent) => {
+          cy.setCKEditorContentSections(selectors[elem.Field], fixtureContent);
+        });
+      } else {
+        cy.setCKEditorContentSections(selectors[elem.Field], elem.Value);
+      }
+    } else if (elem.FieldType === "input") {
       cy.enterValueInField(elem.Value, elem.Field);
+    } else if (elem.FieldType === "date") {
+      const inputDate = elem.Value;
+      const isodate = convertDateToISOFormat(inputDate);
+      cy.get(selectors[elem.Field]).clear().type(isodate);
     } else if (elem.FieldType === "ckeditor") {
       if (elem.Value.startsWith("/")) {
         cy.fixture(elem.Value).then((fixtureContent) => {
@@ -24,10 +49,12 @@ Cypress.Commands.add("fillForm", (dataTable) => {
         });
       } else {
         // If not using a fixture, input the provided value directly
-        cy.get(selectors.CKeditor_source_editing_button).click(); // Switch to source editing mode
-        cy.get(selectors[elem.Field])
-          .clear({ force: true })
-          .type(elem.Value, { parseSpecialCharSequences: false });
+        // cy.get(selectors.CKeditor_source_editing_button).click(); // Switch to source editing mode
+        // cy.get(selectors[elem.Field])
+        //   .clear({ force: true })
+        //   .type(elem.Value, { parseSpecialCharSequences: false });
+
+        cy.setCKEditorContent(selectors[elem.Field], elem.Value);
       }
     } else if (elem.FieldType === "select") {
       cy.get(selectors[elem.Field]).select(elem.Value);
@@ -40,6 +67,15 @@ Cypress.Commands.add("fillForm", (dataTable) => {
               cy.get(`#${id}`).check({ force: true });
             })
         : cy.get(selectors[elem.Field]).check().should("be.checked");
+    } else if (elem.FieldType === "uncheck") {
+      elem.Value
+        ? cy
+            .contains("label", elem.Value)
+            .invoke("attr", "for")
+            .then((id) => {
+              cy.get(`#${id}`).uncheck({ force: true });
+            })
+        : cy.get(selectors[elem.Field]).uncheck().should("be.unchecked");
     } else if (elem.FieldType === "textbox") {
       cy.get(selectors[elem.Field])
         .find("[contenteditable]")
@@ -69,46 +105,49 @@ Cypress.Commands.add("fillForm", (dataTable) => {
       // Type in the dropdown input
       cy.get(selectors[elem.Field])
         .clear()
-        .type(elem.Value, { timeout: 2000 }) // Type the value
+        .type(elem.Value, { timeout: 5000 }) // Type the value
         .should("have.value", elem.Value); // Ensure the value has been typed
 
       // Wait for the dropdown options to appear
-      cy.get("ul[id='ui-id-2'] > li")
+      cy.get(".ui-menu-item")
         .contains(elem.Value, { timeout: 5000 }) // Adjust timeout as needed
         .should("be.visible") // Ensure the dropdown option is visible
         .click({ force: true }); // Select the matching option
     }
   });
-  cy.wait("@allRequests");
+  // cy.wait("@allRequests", { timeout: 60000 });
 });
 
+Cypress.Commands.add("enterTextInQuill", (value, elementSelector) => {
+  cy.get(elementSelector)
+    .should("be.visible")
+    .then(($quillContainer) => {
+      // Attempt to find the Quill editor within the container
+      const quillEditor = $quillContainer.find(".ql-editor")[0];
 
-Cypress.Commands.add('enterTextInQuill', (value, elementSelector) => {
-  cy.get(elementSelector).should('be.visible').then(($quillContainer) => {
-    // Attempt to find the Quill editor within the container
-    const quillEditor = $quillContainer.find('.ql-editor')[0];
-
-    if (quillEditor) {
-      // Use Quill's API to set content
-      cy.wrap(quillEditor).type(value);
-    } else {
-      // Handle the case when Quill editor is not found
-      throw new Error('Quill editor not found within the selected element');
-    }
-  });
+      if (quillEditor) {
+        // Use Quill's API to set content
+        cy.wrap(quillEditor).type(value);
+      } else {
+        // Handle the case when Quill editor is not found
+        throw new Error("Quill editor not found within the selected element");
+      }
+    });
 });
 
-Cypress.Commands.add('clearQuillContent', (elementSelector) => {
-  cy.get(elementSelector).should('be.visible').then(($quillContainer) => {
-    // Attempt to find the Quill editor within the container
-    const quillEditor = $quillContainer.find('.ql-editor')[0];
+Cypress.Commands.add("clearQuillContent", (elementSelector) => {
+  cy.get(elementSelector)
+    .should("be.visible")
+    .then(($quillContainer) => {
+      // Attempt to find the Quill editor within the container
+      const quillEditor = $quillContainer.find(".ql-editor")[0];
 
-    if (quillEditor) {
-      // Use Quill's API to clear content
-      cy.wrap(quillEditor).clear();
-    } else {
-      // Handle the case when Quill editor is not found
-      throw new Error('Quill editor not found within the selected element');
-    }
-  });
+      if (quillEditor) {
+        // Use Quill's API to clear content
+        cy.wrap(quillEditor).clear();
+      } else {
+        // Handle the case when Quill editor is not found
+        throw new Error("Quill editor not found within the selected element");
+      }
+    });
 });

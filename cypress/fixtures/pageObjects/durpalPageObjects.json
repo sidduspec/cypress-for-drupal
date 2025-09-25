@@ -26,6 +26,7 @@
     "basic_cta_button": "[class*=button--cta]",
     "basic_add_media_button": "input[value='Add media']",
     "media_insert_selected": "div[class*=ui-dialog-buttonset] > button",
+    "content_publish_dropdown": "select[data-drupal-selector='edit-moderation-state-0-state']",
     
     "drupal_homepage_toolbar": "#toolbar-bar",
     "drupal_homepage_announcement_feed_block": "[class*='block-announcements-feed']",

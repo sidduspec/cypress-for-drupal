@@ -5,7 +5,7 @@ Cypress.Commands.add('addMenu', (menuName, adminSummary) => {
   cy.visit('/admin/structure/menu/add');
   cy.enterValueInField(menuName, 'menu_title')
   cy.enterValueInField(adminSummary, 'menu_admin_summary')
-  cy.customClick('Save');
+  cy.customClick('basic_action_save');
 });
 
 Cypress.Commands.add('deleteMenu', (title) => {

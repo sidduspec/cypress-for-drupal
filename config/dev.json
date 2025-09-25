@@ -1,5 +1,5 @@
 {
-  "baseUrl": "https://drupal-automation.specbee.site/",
+  "baseUrl": "https://dev-damsafety.specbee.site/",
   "retries": {
     "runMode": 1,
     "openMode": 0

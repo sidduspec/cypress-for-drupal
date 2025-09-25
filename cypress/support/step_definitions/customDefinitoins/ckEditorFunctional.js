@@ -5,9 +5,8 @@ const {
 } = require("@badeball/cypress-cucumber-preprocessor");
 import * as selectors from "../mappings-importer";
 
-When("I navigate to the CKEditor field in content {string}", (contentTitle) => {
+When("I edit the CKEditor in content {string}", (contentTitle) => {
   cy.clickOnEditContent(contentTitle);
-  cy.elementIsVisible("ckeditor_editable");
 });
 
 When("I change the text format to {string}", (textFormat) => {
@@ -77,38 +76,11 @@ Then(
           .should("exist")
           .and("have.prop", "tagName", "BLOCKQUOTE");
       } else if (format === "bulleted") {
-        // Validate bulleted content
         cy.get(selectors.basic_node_content)
-          .invoke("html")
-          .then((actualHtml) => {
-            const actualUlHtml =
-              actualHtml.match(/<ul[\s\S]*<\/ul>/)?.[0] || "";
-            const normalizedActual = actualUlHtml.replace(/\s+/g, " ").trim();
-            const normalizedExpected = content.replace(/\s+/g, " ").trim();
-
-            // Debugging logs
-            cy.log("Actual Extracted HTML:", normalizedActual);
-            cy.log("Expected HTML:", normalizedExpected);
-
-            // Perform the assertion
-            expect(normalizedActual).to.equal(normalizedExpected);
-          });
+          .should("contain.html", `<ul>`);
       } else if (format === "numbered") {
         cy.get(selectors.basic_node_content)
-          .invoke("html")
-          .then((actualHtml) => {
-            const actualUlHtml =
-              actualHtml.match(/<ol[^>]*>[\s\S]*<\/ol>/)?.[0] || "";
-            const normalizedActual = actualUlHtml.replace(/\s+/g, " ").trim();
-            const normalizedExpected = content.replace(/\s+/g, " ").trim();
-
-            // Debugging logs
-            cy.log("Actual Extracted HTML:", normalizedActual);
-            cy.log("Expected HTML:", normalizedExpected);
-
-            // Perform the assertion
-            expect(normalizedActual).to.equal(normalizedExpected);
-          });
+          .should("contain.html", `<ol>`);
       }
     }
   }

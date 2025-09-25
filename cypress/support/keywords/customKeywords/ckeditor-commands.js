@@ -49,6 +49,25 @@ Cypress.Commands.add("setCKEditorContent", (selector, content) => {
   });
 });
 
+Cypress.Commands.add("setCKEditorContentSections", (sectionSelector, content) => {
+  cy.get(sectionSelector)
+    .find(".ck-editor__editable_inline") // Find CKEditor5 content area
+    .should("exist")
+    .then(($el) => {
+      const editorElement = $el[0]; // Get the raw DOM element
+      cy.window().then((win) => {
+        if (!win.document.querySelector(sectionSelector)) {
+          throw new Error(`Editor element not found for selector: ${sectionSelector}`);
+        }
+        const editorInstance = editorElement.ckeditorInstance
+        if (!editorInstance) {
+          throw new Error(`CKEditor instance not found for section: ${sectionSelector}`);
+        }
+        editorInstance.setData(content);
+      });
+    });
+});
+
 Cypress.Commands.add(
   "formatTextInCkEditor",
   (formatType, inputValue, fixtureFile = null) => {

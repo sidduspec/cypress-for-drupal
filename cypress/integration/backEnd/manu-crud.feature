@@ -24,7 +24,7 @@ Feature: Manage Menu
         And I enter "<link_title>" as the link title
         And I enter "<link_path>" as the link path
         And I select "<parent_link>" as the parent link
-        And I click on "Save" button
+        And I click on "basic_action_save" button
         Then I should see the message "The menu link has been saved."
         And the link "<link_title>" should be visible for the menu "<menu_title>"
         When I edit menu link "<link_title>" title to "<link_title_updated>" and link path to "<link_path_updated>"
@@ -44,7 +44,7 @@ Feature: Manage Menu
         Then the menu "Main Navigation - Test" should be visible in the "menu_list"
         When I click on "Edit menu" next to the menu "Main Navigation - Test"
         And I change the menu name to "Main Navigation - Test updated"
-        And I click on "Save" button
+        And I click on "basic_action_save" button
         Then I should see the message "Menu Main Navigation - Test updated has been updated."
         When I navigate to "/admin/structure/menu"
         Then the menu "Main Navigation - Test updated" should be visible in the "menu_list"
