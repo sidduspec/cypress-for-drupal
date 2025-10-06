@@ -11,8 +11,13 @@ When(
 );
 
 Then('I should see a success message {string}', (successMessage) => {
-  cy.checkPageContainsValue(successMessage)
-})
+  cy.checkPageSuccessContainsValue(successMessage)
+});
+
+
+Then('I should see a edit success message {string}', (successMessage) => {
+  cy.checkPageSuccessContainsValue(successMessage)
+});
 
 Then('I capture the page url as {string}', (aliasName) => {
   cy.url().then((url) => {
@@ -21,7 +26,8 @@ Then('I capture the page url as {string}', (aliasName) => {
 });
 
 Then('I should see the {string} in the page title', (pageTitle) => {
-  cy.get('h1').should('contain', pageTitle);
+ cy.title().should('include', pageTitle);
+
 })
 
 Then('I publish the page', () => {
@@ -109,7 +115,7 @@ Then("I add the following credit types:", (dataTable) => {
   cy.manageMultiValueField("Credit Type", "add", creditTypes);
 });
 Then(
-  "I should see the basic page {string} in the content table",
+  "I should see the test page {string} in the content table",
   (pageTitle) => {
     cy.get(selectors.basic_table_locator).should("contain", pageTitle);
   }
@@ -141,11 +147,11 @@ When(
 
 When("I edit the content {string} and navigate to layout page", (content) => {
   cy.clickToViewContent(content);
-  cy.get(".local-tasks").contains("Layout").click({ force: true });
+  cy.get("[class='tabs__tab js-tab']").contains("Layout").click({ force: true });
 });
 
 When("I click on {string} to view the page", (tab) => {
-  cy.get(".local-tasks").contains(tab).click({ force: true });
+  cy.get("[data-drupal-link-system-path='node/1669']").contains(tab).click({ force: true });
 });
 
 Then("I click on the {string} from content page to view", (contentTitle) => {
@@ -197,7 +203,7 @@ When("I edit the {string} with the details:", (contentType, dataTable) => {
   cy.fillForm(dataTable); // Custom command for content editing
 });
 
-When("I delete the basic page {string}", (title) => {
+When("I delete the {string}", (title) => {
   cy.deleteContent(title); // Custom command for content deletion
 });
 

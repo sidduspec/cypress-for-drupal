@@ -1,6 +1,6 @@
 import './commands';
+import '@percy/cypress';
 
-import '@applitools/eyes-cypress/commands'
 
 import 'cypress-plugin-api';
 import 'cypress-real-events';
@@ -17,7 +17,6 @@ import './keywords/customKeywords/paragraph-types.js'
 import './keywords/customKeywords/menu-commands.js'
 import './keywords/customKeywords/content-types.js'
 import './keywords/customKeywords/ckeditor-commands.js'
-import './keywords/customKeywords/drupal-login.js'
 
 //import generic keyword library
 import './keywords/genericKeywords/check-uncheck-the-checkbox'
@@ -43,6 +42,7 @@ import './keywords/genericKeywords/verify-titles'
 import './keywords/genericKeywords/wait'
 import './keywords/genericKeywords/applitools-eyes-commands.js'
 import './keywords/genericKeywords/reusable-commands.js'
+import './keywords/genericKeywords/accept-cookies.js'
 
 Cypress.on('uncaught:exception', (err, runnable) => {
   // returning false here prevents Cypress from failing the test 
@@ -74,7 +74,7 @@ const parsedUrl = new URL(url);
 const domain = parsedUrl.hostname;
 
 Cypress.Allure.writeEnvironmentInfo({
-  'Application': '<Your Applicaytion Name>',
+  'Application': 'INX International',
   'Environment': domain,
   Browser: browserName,
   'Browser Version': browserVersion,

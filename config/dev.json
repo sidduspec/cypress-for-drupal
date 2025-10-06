@@ -1,5 +1,5 @@
 {
-  "baseUrl": "https://dev-damsafety.specbee.site/",
+  "baseUrl": "https://devrevamp-inxinternational.pantheonsite.io/",
   "retries": {
     "runMode": 1,
     "openMode": 0
@@ -8,6 +8,6 @@
   "pageLoadTimeout": 60000,
   "requestTimeout": 20000,
   "env": {
-    "TAGS": "not @ignore-env-dev"
+    "TAGS": "not @ignore-env-test"
   }
 }

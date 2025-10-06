@@ -4,6 +4,9 @@ Cypress.Commands.add("navigateToUrl", (input) => {
   if (input.startsWith('http') || input.startsWith('/')) {
     // Direct URL or relative path
     cy.visit(input);
+    cy.document().should((doc) => {
+  expect(doc.readyState).to.equal('complete');
+});
   } else {
     // Treat as Cypress.env alias
     const savedUrl = Cypress.env(input);

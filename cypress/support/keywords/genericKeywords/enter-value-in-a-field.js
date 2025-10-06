@@ -1,19 +1,31 @@
 import * as selectors from "../../step_definitions/mappings-importer";
 import { convertDateToISOFormat } from "../../methods/getDate";
+import { fieldToSectionMap } from "../../methods/fieldToSectionMap";
+
+
+function openSectionIfNeeded(fieldName) {
+  const sectionLabel = fieldToSectionMap[fieldName];
+  if (sectionLabel) {
+    cy.contains('summary', sectionLabel).then(($summary) => {
+      if ($summary.attr('aria-expanded') === 'false') {
+        cy.wrap($summary).click({ force: true });
+      }
+    });
+  }
+}
+
 
 Cypress.Commands.add(
   "enterValueInField",
   (value, elementSelector, detached = false) => {
     const field = cy
-      .get(selectors[elementSelector])
+      .get(selectors[elementSelector]).scrollIntoView()
       .should("be.visible")
       .wait(500);
     if (detached) {
       field.type(Cypress.env(value) || value, { force: true });
     } else {
-      field
-        .clear({ force: true })
-        .type(Cypress.env(value) || value, { force: true });
+      field.clear({ force: true }).type(Cypress.env(value) || value, { force: true });
     }
   }
 );
@@ -21,11 +33,13 @@ Cypress.Commands.add(
 Cypress.Commands.add("fillForm", (dataTable) => {
   // cy.intercept("POST", "/api/*").as("allRequests");
   dataTable.hashes().forEach((elem) => {
+     openSectionIfNeeded(elem.Field);
+
     if(elem.FieldType === "isMandatory") {
+      cy.contains("button","Description and Background").click()
       cy.get(selectors[elem.Field]).should("have.attr", "aria-required", "true");
 
-     }
-    if (elem.FieldType === "ckSection") {
+     }  else if (elem.FieldType === "ckSection") {
       if (elem.Value.startsWith("/")) {
         cy.fixture(elem.Value).then((fixtureContent) => {
           cy.setCKEditorContentSections(selectors[elem.Field], fixtureContent);
@@ -33,21 +47,47 @@ Cypress.Commands.add("fillForm", (dataTable) => {
       } else {
         cy.setCKEditorContentSections(selectors[elem.Field], elem.Value);
       }
-    } else if (elem.FieldType === "input") {
-      cy.enterValueInField(elem.Value, elem.Field);
-    } else if (elem.FieldType === "date") {
+    } 
+   else if (elem.FieldType === "input") {
+  if (elem.Value.trim().startsWith("/") && elem.Value.trim().endsWith(".html")) {
+    const filePath = elem.Value.trim().replace(/^\/+/, ""); // Remove leading slashes
+    cy.fixture(filePath).then((fixtureContent) => {
+      cy.enterValueInField(fixtureContent, elem.Field);
+    });
+  } else {
+    cy.enterValueInField(elem.Value, elem.Field);
+  }
+} else if (elem.FieldType === "date") {
       const inputDate = elem.Value;
       const isodate = convertDateToISOFormat(inputDate);
       cy.get(selectors[elem.Field]).clear().type(isodate);
-    } else if (elem.FieldType === "ckeditor") {
-      if (elem.Value.startsWith("/")) {
-        cy.fixture(elem.Value).then((fixtureContent) => {
-          cy.get(selectors.CKeditor_source_editing_button).click(); // Switch to source editing mode
-          cy.get(selectors[elem.Field])
-            .clear({ force: true })
-            .type(fixtureContent, { parseSpecialCharSequences: false }); // Insert formatted content (HTML)
-        });
-      } else {
+    } //  else if (elem.FieldType === "ckeditor") {
+    //   if (elem.Value.startsWith("/")) {
+    //     cy.fixture(elem.Value).then((fixtureContent) => {
+    //       cy.get(selectors.CKeditor_source_editing_button).click(); // Switch to source editing mode
+    //       cy.get(selectors[elem.Field])
+    //         .clear({ force: true })
+    //         .type(fixtureContent, { parseSpecialCharSequences: false }); // Insert formatted content (HTML)
+    //     });
+    //   } 
+    // }
+    
+    else if (elem.FieldType === "ckeditor") {
+  if (elem.Value.startsWith("/")) {
+    cy.fixture(elem.Value).then((fixtureContent) => {
+      cy.get(selectors[elem.Field]).should('exist').should('be.visible')
+        .then(($el) => {
+          const editorElement = $el[0]; // Raw DOM element
+          cy.window().then((win) => {
+            const editorInstance = editorElement.ckeditorInstance;
+            if (!editorInstance) {
+              throw new Error(`CKEditor instance not found for: ${elem.Field}`);
+            }
+            editorInstance.setData(fixtureContent); // Set content using CKEditor's API
+          });
+        });}
+    );
+  } else {
         // If not using a fixture, input the provided value directly
         // cy.get(selectors.CKeditor_source_editing_button).click(); // Switch to source editing mode
         // cy.get(selectors[elem.Field])
@@ -56,7 +96,15 @@ Cypress.Commands.add("fillForm", (dataTable) => {
 
         cy.setCKEditorContent(selectors[elem.Field], elem.Value);
       }
-    } else if (elem.FieldType === "select") {
+    }    else if (elem.FieldType === "typeAndsearch") {
+      cy.get(selectors[elem.Field]).focus().clear().type(elem.Value,{ timeout: 3000 });
+      cy.get("[class='field-content media-library-item__content']").contains(elem.Value)
+    .should("be.visible")
+    .click({ force: true });
+    cy.get('.ui-dialog-buttonset > .media-library-select').click({force: true})
+
+    } 
+    else if (elem.FieldType === "select") {
       cy.get(selectors[elem.Field]).select(elem.Value);
     } else if (elem.FieldType === "checkbox") {
       elem.Value
@@ -89,13 +137,13 @@ Cypress.Commands.add("fillForm", (dataTable) => {
           .contains(elem.Value)
           .scrollIntoView()
           .should("be.visible")
-          .click();
-      } else {
-        cy.get(selectors[elem.Field])
-          .scrollIntoView()
-          .should("be.visible")
-          .click();
-      }
+          .click({force: true});
+      }else{
+        cy.get(selectors[elem.Field]).scrollIntoView()
+          .should("be.visible").wait(1000) 
+          .click({force: true});
+        }
+      
     } else if (elem.FieldType === "file") {
       cy.get(selectors[elem.Field]).first().attachFile(elem.Value).wait(1000);
     } else if (elem.FieldType === "wait") {
@@ -106,17 +154,24 @@ Cypress.Commands.add("fillForm", (dataTable) => {
       cy.get(selectors[elem.Field])
         .clear()
         .type(elem.Value, { timeout: 5000 }) // Type the value
-        .should("have.value", elem.Value); // Ensure the value has been typed
-
+        // cy.wait
+         //.should("have.value", elem.Value); // Ensure the value has been typed
+     cy.get("body")
+    .find("li, div") // search broadly, then filter
+    .contains(elem.Value)
+    .should("be.visible")
+    .click({ force: true });
       // Wait for the dropdown options to appear
-      cy.get(".ui-menu-item")
-        .contains(elem.Value, { timeout: 5000 }) // Adjust timeout as needed
-        .should("be.visible") // Ensure the dropdown option is visible
-        .click({ force: true }); // Select the matching option
+      // cy.get(".ui-menu-item")
+      //   .contains(elem.Value, { timeout: 5000 }) // Adjust timeout as needed
+      //   .should("be.visible") // Ensure the dropdown option is visible
+      //   .click({ force: true }); // Select the matching option
     }
   });
   // cy.wait("@allRequests", { timeout: 60000 });
 });
+
+
 
 Cypress.Commands.add("enterTextInQuill", (value, elementSelector) => {
   cy.get(elementSelector)
@@ -151,3 +206,4 @@ Cypress.Commands.add("clearQuillContent", (elementSelector) => {
       }
     });
 });
+

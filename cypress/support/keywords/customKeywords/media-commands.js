@@ -5,7 +5,7 @@ Cypress.Commands.add("addDocument", (mediaName, mediaFilePath) => {
   cy.visit("/admin/content/media");
   cy.get(selectors.add_media_button).click();
   cy.contains("Document").click({ force: true });
-  cy.get(selectors.media_name_input).clear().type(mediaName);
+  // cy.get(selectors.media_name_input).clear().type(mediaName);
   cy.get(selectors.media_file_input).attachFile(mediaFilePath);
   cy.wait(2000);
   cy.get(selectors.content_save_button).click();
@@ -13,8 +13,8 @@ Cypress.Commands.add("addDocument", (mediaName, mediaFilePath) => {
 });
 
 Cypress.Commands.add("addImage", (mediaName, mediaFilePath, altText) => {
-  cy.get('.admin-list').contains("Image").parent().should('be.visible').click();
-  cy.get(selectors.media_name_input).clear().type(mediaName);
+  cy.get('.admin-list').contains("Image").should('be.visible').click();
+  // cy.get(selectors.media_name_input).clear().type(mediaName);
   cy.get(selectors.media_file_input).attachFile(mediaFilePath);
   cy.get(selectors.media_alt_text_input).clear().type(altText);
   cy.get(selectors.content_save_button).click();
@@ -24,16 +24,28 @@ Cypress.Commands.add("addImage", (mediaName, mediaFilePath, altText) => {
 Cypress.Commands.add("addMedia", (mediaType, mediaName, mediaFilePath) => {
   cy.visit("/admin/content/media");
   cy.get(selectors.add_media_button).click();
-  cy.get(`[title="${mediaType}"]`).click({ force: true });
+      cy.get('.admin-item__link').each(($link) => {
+      const text = $link.text();
+
+      if (text.includes(mediaType)) {
+        cy.wrap($link).click();
+        cy.log(`Clicked item with media type: ${mediaType}`);
+        return false; // Stop after first match
+      }
+    });
+  // cy.get(`"${mediaType}"`).click({ force: true });
+  // cy.get('.admin-list').contains(`"${mediaType}"`).should('be.visible').click();
+  // cy.get(selectors.media_name).type("Test")
   // cy.get(selectors.media_name_input).clear().type(mediaName);
   cy.get(selectors.media_file_input).attachFile(mediaFilePath);
-  cy.wait(5000);
+  cy.wait(10000);
   cy.get(selectors.content_save_button).click();
   cy.log(`Image ${mediaName} has been added`);
 });
 
 Cypress.Commands.add("addRemoteVideo", (mediaName, videoURL) => {
-  cy.get('.admin-list').contains("Remote video").parent().should('be.visible').click();
+  cy.get('.admin-list').contains("Remote video").should('be.visible').click();
+  // cy.get(selectors.media_name).type("Test")
   cy.get(selectors.media_input_link).clear().type(videoURL);
   cy.get(selectors.content_save_button).click();
   cy.log(`Remote Video ${mediaName} has been added`);
@@ -52,7 +64,7 @@ Cypress.Commands.add(
       mediaType === "Video" ||
       mediaType === "Image" ||
       mediaType === "Remote video" ||
-      mediaType === "Documnent"
+      mediaType === "Document"
     ) {
       cy.filterName(oldMediaName);
       cy.get(selectors.media_table)
@@ -68,14 +80,14 @@ Cypress.Commands.add(
         cy.get(selectors.media_remove_button).click(); // Remove old file
         cy.wait(2000);
         cy.get(selectors.media_file_input).attachFile(newMediaFilePath);
-        cy.get('.file--image')
+        cy.wait(6000);
+        cy.get('.form-managed-file__main a')
           .should('be.visible')
           .invoke('text')
-          .then((imageText) => {
-            capturedImageTitle = imageText.trim().replace(/\s*\(.*?\)$/, '');
-          });
-        cy.wait(4000);
-      }
+          .then((capturedFileNameRaw) => {
+             capturedImageTitle = capturedFileNameRaw.trim().replace(/\s*\(.*?\)$/, '');
+          }); 
+      } // 
 
       if (mediaType === "Image" && newAltText) {
         cy.get(selectors.media_alt_text_input).clear().type(newAltText);
@@ -99,6 +111,7 @@ Cypress.Commands.add(
     }
   }
 );
+
 
 
 Cypress.Commands.add("assertRemoteVideoAtTop", () => {

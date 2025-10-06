@@ -1,43 +1,28 @@
 {
-  "name": "cypress-for-drupal",
+  "name": "generic-cypress-test",
   "version": "1.0.0",
-  "description": "Automate Drupal Applications at ease",
+  "description": "Test automation for drupal core functionalities",
   "main": "index.js",
   "scripts": {
-    "postinstall": "echo 'postinstall script triggered to scaffold Cypress' && node scaffold.config.js",
-    "run:test:with:creds": "CYPRESS_username=<username> CYPRESS_password=<password> cypress run --headless --env configFile=dev",
-    "run:test:with:custom:config": "cypress run --config-file custom.cypress.config.js",
-    "run:test:prod": "cypress run --env configFile=prod",
-    "run:test:dev": "cypress run --env configFile=dev",
-    "run:test:stage": "cypress run --env configFile=stage",
-    "run:test:tags": "cypress run --env configFile=stage,TAGS=\"@smoke\"",
-    "open:test:with:creds": "CYPRESS_username=<username> CYPRESS_password=<password> cypress open --env configFile=dev",
-    "open:test:with:custom:config": "cypress open --config-file custom.cypress.config.js",
-    "open:test:prod": "cypress open --env configFile=prod",
-    "open:test:dev": "cypress open --env configFile=dev",
-    "open:test:stage": "cypress open --env configFile=stage",
-    "run:test:prod:smoke": "cypress run --headless --browser chrome --env configFile=prod TAGS='<your-tab>'",
-    "run:test:dev:smoke": " cypress run --headless --browser chrome --env configFile=dev TAGS='<your-tab>'",
-    "run:test:stage:smoke": " cypress run --headless --browser chrome --env configFile=stage TAGS='<your-tab>'",
-    "cy:verify": "cypress verify",
-    "allure:report": "allure generate cypress/reports/allure-results --clean -o cypress/reports/allure-report && allure open cypress/reports/allure-report",
-    "cy:run:allure:tes": "npm run run:test:tags && npm run allure:report"
+    "run:test:dev": "cross-env CYPRESS_username=<username> CYPRESS_password=<password> cypress open --env configFile=dev",
+    "run:live:baseline": "cross-env PERCY_BRANCH=live_site CYPRESS_username=<username> CYPRESS_password=<password> npx percy exec -- cypress run --env configFile=prod,TAGS='@visual_existing'",
+    "run:dev:vs:live": "cross-env PERCY_BRANCH=dev PERCY_TARGET_BRANCH=live_site CYPRESS_username=<username> CYPRESS_password=<password>  npx percy exec -- cypress run --env configFile=dev,TAGS='@visual_existing'",
+    "run:uat:vs:live": "cross-env PERCY_BRANCH=uat PERCY_TARGET_BRANCH=live_site CYPRESS_username=<username> CYPRESS_password=<password>  npx percy exec -- cypress run --env configFile=uat,TAGS='@visual_existing'",
+    "run:dev:vs:uat": "cross-env PERCY_BRANCH=dev PERCY_TARGET_BRANCH=uat CYPRESS_username=<username> CYPRESS_password=<password>  npx percy exec -- cypress run --env configFile=dev,TAGS='@visual_existing'",
+    "run:pr:branch:vs:uat/dev/live": "cross-env PERCY_TARGET_BRANCH=<uat/dev/live_site> CYPRESS_username=<username> CYPRESS_password=<password>  npx percy exec -- cypress run --env configFile=<Your local accessable file>,TAGS='@visual_existing'",
+    "run:dev:vs:figma": "cross-env PERCY_BRANCH=dev_vs_figma PERCY_TARGET_BRANCH=figma_design CYPRESS_username=<username> CYPRESS_password=<password> npx percy exec -- cypress run --env configFile=dev,TAGS='@visual_redesign'"
   },
-  "keywords": [
-    "cucumber",
-    "gherkin",
-    "cypress",
-    "testing"
-  ],
-  "author": 
-    {
-        "name": "Specbee",
-        "email": "developer@specbee.com",
-        "homepage": "https://specbee.com",
-        "role": "maintainer"
-    },
+  "repository": {
+    "type": "git",
+    "url": "git+https://bitbucket.org/team_specbee/inxinternational.git"
+  },
+  "author": "prasanna",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://bitbucket.org/team_specbee/inxinternational/issues"
+  },
+  "homepage": "https://bitbucket.org/team_specbee/inxinternational#readme",
   "dependencies": {
-    "@applitools/eyes-cypress": "^3.52.0",
     "@badeball/cypress-cucumber-preprocessor": "^19.1.0",
     "@bahmutov/cypress-esbuild-preprocessor": "^2.2.3",
     "@cypress/browserify-preprocessor": "^3.0.2",
@@ -56,7 +41,10 @@
     "linkinator": "^6.1.2",
     "moment": "^2.29.4",
     "path": "^0.12.7",
-    "simple-scaffold": "^2.3.0",
     "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "@percy/cli": "^1.31.2",
+    "@percy/cypress": "^3.1.6"
   }
 }

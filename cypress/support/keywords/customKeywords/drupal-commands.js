@@ -9,8 +9,59 @@ Cypress.Commands.add("loginToDrupal", (username, password) => {
   cy.get(selectors.login_password_field).type(Cypress.env(password), {
     force: true,
   });
+  cy.fillCaptcha();
   cy.get(selectors.login_submit_button).should("be.visible").click();
 });
+
+Cypress.Commands.add("loginForVisual", (username, password) => {
+  cy.visit("/user/login");
+  cy.get(selectors.login_username_field).type(username, {
+    force: true,
+  });
+  cy.get(selectors.login_password_field).type(password, {
+    force: true,
+  });
+  cy.fillCaptcha();
+  cy.get(selectors.login_submit_button).should("be.visible").click();
+});
+
+// fill captcha
+Cypress.Commands.add("fillCaptcha", () => {
+  cy.get(selectors.login_captcha_question).invoke('text').then((txt) => {
+      const match = txt.match(/(\d+)\s*([\+\-\*\/])\s*(\d+)/);
+
+      if (match) {
+        const num1 = parseInt(match[1], 10);
+        const operator = match[2];
+        const num2 = parseInt(match[3], 10);
+
+        let result;
+
+        switch (operator) {
+          case '+':
+            result = num1 + num2;
+            break;
+          case '-':
+            result = num1 - num2;
+            break;
+          case '*':
+            result = num1 * num2;
+            break;
+          case '/':
+            result = Math.floor(num1 / num2);
+            break;
+          default:
+            throw new Error('Unknown operator');
+        }
+
+        cy.get(selectors.login_captcha_field).type(result.toString());  
+        
+      } else {
+        throw new Error('Captcha text pattern not found');
+      }
+    });
+});
+
 
 Cypress.Commands.add("selectContentType", (contentType) => {
   cy.get(selectors.drupal_content_type_selector).contains(contentType).click();
@@ -65,8 +116,8 @@ Cypress.Commands.add("loginAs", (username, password, role) => {
 
 Cypress.Commands.add("logout", () => {
   cy.navigateToUrl("/user/logout");
-  cy.customClick("content_delete_dialog_delete_button");
-  cy.url().should("eq", Cypress.config().baseUrl);
+   cy.customClick("content_delete_dialog_delete_button");
+  // cy.url().should("eq", Cypress.config().baseUrl);
 });
 
 

@@ -21,6 +21,13 @@ When(
 );
 
 When(
+  "I click insert media {string}",(mediaFileName) => {
+    cy.selectMediaFile(mediaFileName);
+    
+  }
+);
+
+When(
   "I apply formatting {string} and type in {string} from fixture",
   (formatType, input) => {
     cy.formatTextInCkEditor(formatType, null, input);
@@ -29,6 +36,7 @@ When(
 
 When("I select {string} and insert text {string}", (heading, headingText) => {
   cy.setCKEditorContent(selectors.ckeditor_role_textbox, headingText);
+  cy.get(selectors.ckeditor_toolbar_show_more_button).click({ force: true });
   cy.get(selectors.ckeditor_toolbar_item_heading_dropdown).click({ force: true }); // Open paragraph format dropdown
   cy.get(selectors.ckeditor_toolbar_heading_dropdown_list)
     .contains(heading)

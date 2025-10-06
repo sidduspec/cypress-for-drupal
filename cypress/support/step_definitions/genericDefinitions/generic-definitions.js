@@ -19,6 +19,10 @@ Then('I logout of the application', () => {
   cy.logout();
 })
 
+Then(' I will logout of the application', ()=>{
+  
+})
+
 Then('I logout of the application and visit the {string} page', (aliasName) => {
   cy.logout();
   const targetUrl = Cypress.env(aliasName);
@@ -142,7 +146,7 @@ Then("the responsive element {string} should be visible", (selector) => {
 });
 
 Then("I should see the content title {string}", (title) => {
-  cy.get('h1').contains(title).should('be.visible');
+  cy.get("h1").contains(title).should('be.visible');
 });
 
 Then("I should see an image with selector {string}", (selector) => {

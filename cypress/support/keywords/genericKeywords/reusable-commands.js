@@ -13,7 +13,7 @@ Cypress.Commands.add('visitPage', (path) => {
   });
   
   Cypress.Commands.add('clickElement', (selector) => {
-    cy.get(selector).click();
+    cy.get(selector).click({force: true});
   });
   
   Cypress.Commands.add('assertCssProperty', (selector, property, value) => {

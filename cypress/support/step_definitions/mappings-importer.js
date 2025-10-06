@@ -12,6 +12,7 @@ import * as frontend from '../../fixtures/pageObjects/front-end.json';
 import * as backend from '../../fixtures/pageObjects/back-end.json';
 
 
+
 const selectors = Object.assign(
   ckeditor,
   loginPage,

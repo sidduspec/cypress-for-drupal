@@ -1,8 +1,18 @@
 import * as selectors from "../../step_definitions/mappings-importer"
 
-Cypress.Commands.add('createContent', (contentType, dataTable) => {
+Cypress.Commands.add('createContent', (contentType, dataTable,type) => {
+    contentType = (contentType === 'Basic') ? 'landing' : contentType;
+
     cy.get(selectors.content_add_content_button).click({ force: true });
-    cy.get(' h3 > a').contains(contentType).click({ force: true });
+    // cy.contains(`'a.admin-item__link', ${contentType}`).click({ force: true });
+    cy.contains('a.admin-item__link', contentType).click({ force: true });
+    if (type) {
+        
+    }
+    
+    // cy.contains('summary', 'Description and Background').click({ force: true });
+
+
     cy.fillForm(dataTable);
 });
 

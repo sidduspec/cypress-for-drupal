@@ -46,7 +46,22 @@ Cypress.Commands.add('checkPageContainsValue', (assertionValue) => {
   const array = assertionValue.split(',');
   array.forEach((item) => {
     cy.contains(item);
+    cy.get('.messages__content').invoke('text').should('contain', item);
   });
+});
+
+Cypress.Commands.add('checkPageSuccessContainsValue', (assertionValue) => {
+  cy.get('.messages__content, .alert > p')
+    .first()
+    .invoke('text')
+    .then((text) => {
+      const normalizedText = text
+        .replace(/\u00a0/g, ' ')
+        .replace(/\s+/g, ' ')
+        .trim()
+        .toLowerCase();
+      expect(normalizedText).to.contain(assertionValue.toLowerCase());
+    });
 });
 
 Cypress.Commands.add('checkPageDoesNotContainValue', (assertionValue) => {

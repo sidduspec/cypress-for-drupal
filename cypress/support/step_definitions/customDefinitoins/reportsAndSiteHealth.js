@@ -70,7 +70,7 @@ When("I verify that the last cron run was within {string}", (interval) => {
 });
 
 When("I check for the broken links in the current environment", () => {
-  cy.task("runLinkChecker", null, {timeout:600000}).then((result) => {
+  cy.task("runLinkChecker", null, { timeout: 60000 }).then((result) => {
     cy.log("Link check completed.");
   });
 });

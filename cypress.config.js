@@ -2,7 +2,6 @@ const fs = require("fs-extra");
 const path = require("path");
 const { exec } = require("child_process");
 const { defineConfig } = require("cypress");
-const eyesPlugin = require("@applitools/eyes-cypress");
 const preprocessor = require("@badeball/cypress-cucumber-preprocessor");
 const browserify = require("@badeball/cypress-cucumber-preprocessor/browserify");
 const {
@@ -19,7 +18,7 @@ function getConfigurationByFile(file) {
   return fs.readJson(pathToConfigFile);
 }
 
-module.exports = eyesPlugin(defineConfig({
+module.exports = defineConfig({
   e2e: {
     specPattern: [
       "cypress/integration/**/*.feature", // Include all feature files in the integration folder
@@ -58,10 +57,6 @@ module.exports = eyesPlugin(defineConfig({
       allureLogCyCommands: true,
     },
     async setupNodeEvents(cypressOn, config) {
-      config.env.APPLITOOLS_API_KEY = process.env.APPLITOOLS_API_KEY;
-      config.env.APP_KEY = process.env.APP_KEY;
-      config.env.TARGET_PAIR = process.env.PAIR;
-      config.env.TARGET_ENV = process.env.TARGET_ENV
       // bind to the event we care about
       const on = require("cypress-on-fix")(cypressOn);
 
@@ -113,9 +108,6 @@ module.exports = eyesPlugin(defineConfig({
           }
           return null;
         },
-        getAppConfigTask({ appKey, pair, target }) {
-          return appCfg.getAppConfig(appKey, pair, target);
-        }
       });
       on("before:browser:launch", (browser = {}, options) => {
         if (fs.existsSync(downloadDirectory)) {
@@ -165,7 +157,4 @@ module.exports = eyesPlugin(defineConfig({
       return config;
     }
   },
-}));
-
-
-require('@applitools/eyes-cypress')(module);
+});

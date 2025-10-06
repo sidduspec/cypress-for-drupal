@@ -11,4 +11,5 @@ Then('I should see the profile for {string} in the toolbar section', (user) => {
 
 Given('I login to admin dashboard with username {string} and password {string}', (username, password) => {
   cy.loginToDrupal(username, password)
+  cy.acceptCookies()
 })
