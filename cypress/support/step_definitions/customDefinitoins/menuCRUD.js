@@ -57,7 +57,7 @@ When('I edit menu link {string} title to {string} and link path to {string}', (l
     cy.editContentWithTitle(linkTitle)
     cy.enterValueInField(linkTitleUpdated, 'menu_link_title')
     cy.enterValueInField(linkPathUpdated, 'menu_link_path')
-    cy.customClick('Save')
+    cy.customClick('basic_action_save')
 })
 
 Then('I delete the menu link {string}', (menuLink)=>{

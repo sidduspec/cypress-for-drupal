@@ -33,6 +33,7 @@ module.exports = defineConfig({
     screenshotOnRunFailure: true,
     defaultCommandTimeout: 15000,
     pageLoadTimeout: 20000,
+    requestTimeout: 20000,
     taskTimeout: 20000,
     multiple: true,
     viewportWidth: 1920,

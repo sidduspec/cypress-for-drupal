@@ -14,7 +14,7 @@ Cypress.Commands.add('addSection', (sectionIndex = 1, sectionType, settings = {}
 Cypress.Commands.add('addBlock', (blockType, sectionIndex, blockSettings = {}) => {
   // Find the specific section where the block will be added
   cy.get(`[data-layout-builder-highlight-id='block-${sectionIndex}-content']`).click();
-  cy.get(`[class="layout-builder-browser-block-item"]`).contains(blockType).click();  // Select the block type
+  cy.get("[class='layout-builder-browser-block-item']").contains(blockType).click();  // Select the block type
   if (blockSettings) {
     cy.fillForm(blockSettings)
   }

@@ -7,7 +7,7 @@
     "basic_node_content": ".node__content",
     "basic_node_content_link": ".node__content a",
     "basic_node_content_image": ".node__content img",
-    "basic_node_content_blockquote": ".node__content blockquote",
+    "basic_node_content_blockquote": ".content blockquote",
     "basic_page_title": "[class*='page-title']",
     "basic_page_body_summary": "[class*=field--type-text-with-summary] > div",
     "baisc_filter_by_name_field": "input[id='edit-name']",
@@ -26,6 +26,7 @@
     "basic_cta_button": "[class*=button--cta]",
     "basic_add_media_button": "input[value='Add media']",
     "media_insert_selected": "div[class*=ui-dialog-buttonset] > button",
+    "content_publish_dropdown": "input[data-drupal-selector='edit-status-value']",
     
     "drupal_homepage_toolbar": "#toolbar-bar",
     "drupal_homepage_announcement_feed_block": "[class*='block-announcements-feed']",

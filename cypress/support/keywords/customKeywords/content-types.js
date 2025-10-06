@@ -1,8 +1,18 @@
 import * as selectors from "../../step_definitions/mappings-importer"
 
-Cypress.Commands.add('createContent', (contentType, dataTable) => {
+Cypress.Commands.add('createContent', (contentType, dataTable,type) => {
+    contentType = (contentType === 'Basic') ? 'landing' : contentType;
+
     cy.get(selectors.content_add_content_button).click({ force: true });
-    cy.get('a').filter(`[title="${contentType}"]`).click({ force: true });
+    // cy.contains(`'a.admin-item__link', ${contentType}`).click({ force: true });
+    cy.contains('a.admin-item__link', contentType).click({ force: true });
+    if (type) {
+        
+    }
+    
+    // cy.contains('summary', 'Description and Background').click({ force: true });
+
+
     cy.fillForm(dataTable);
 });
 
@@ -27,7 +37,7 @@ Cypress.Commands.add('clickToViewContent', (contentTitle) => {
         const matchingRow = $rows.filter((index, row) => {
             return Cypress.$(row).text().includes(contentTitle);
         }).first();
-        cy.wrap(matchingRow).find(selectors.content_table_item).should('be.visible').click({force: true});
+        cy.wrap(matchingRow).find(selectors.content_table_item).should('be.visible').click({ force: true });
     })
 })
 
@@ -45,4 +55,32 @@ Cypress.Commands.add('deleteContentType', (contentTypeLabel) => {
 
 Cypress.Commands.add('selectContentType', (contentType) => {
     cy.get(selectors.content_type_selector).contains(contentType).click({ force: true });
-  });
+});
+
+Cypress.Commands.add("manageMultiValueField", (fieldLabel, action, values = []) => {
+    cy.get('#field-credit-type-values') // Locate the field section by label
+        .within(() => {
+            cy.get('#edit-field-credit-type-0-target-id').should("have.length.at.least", 1); // Ensure at least one field is present
+
+            if (action === "add") {
+                values.forEach((value, index) => {
+                    if (index > 0) {
+                        cy.get("[id*='add more']").click(); // Click "Add another item" button to add a new field
+                    }
+                    cy.get(`#edit-field-credit-type-${index}-target-id`).eq(index).type(value);
+                });
+            }
+
+            if (action === "validate") {
+                values.forEach((value) => {
+                    cy.contains(value).should("be.visible"); // Ensure value is displayed
+                });
+            }
+
+            if (action === "remove") {
+                cy.get('button:contains("Remove")').first().click(); // Click "Remove" button for the first entry
+                cy.wait(500); // Wait to ensure UI updates
+            }
+        });
+});
+

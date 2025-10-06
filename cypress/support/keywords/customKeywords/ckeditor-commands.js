@@ -49,6 +49,25 @@ Cypress.Commands.add("setCKEditorContent", (selector, content) => {
   });
 });
 
+Cypress.Commands.add("setCKEditorContentSections", (sectionSelector, content) => {
+  cy.get(sectionSelector)
+    .find(".ck-editor__editable_inline") // Find CKEditor5 content area
+    .should("exist")
+    .then(($el) => {
+      const editorElement = $el[0]; // Get the raw DOM element
+      cy.window().then((win) => {
+        if (!win.document.querySelector(sectionSelector)) {
+          throw new Error(`Editor element not found for selector: ${sectionSelector}`);
+        }
+        const editorInstance = editorElement.ckeditorInstance
+        if (!editorInstance) {
+          throw new Error(`CKEditor instance not found for section: ${sectionSelector}`);
+        }
+        editorInstance.setData(content);
+      });
+    });
+});
+
 Cypress.Commands.add(
   "formatTextInCkEditor",
   (formatType, inputValue, fixtureFile = null) => {
@@ -91,13 +110,36 @@ Cypress.Commands.add(
         formattedContent = `
           ${inputValue}`;
       } else if (formatType === "image") {
-        cy.get(selectors.ckeditor_toolbar_item_image_button).click({ force: true });
-        formattedContent = `<img src=${inputValue}>`;
-      }
+  cy.get(selectors.ckeditor_toolbar_item_image_button).click({ force: true });
+  formattedContent = `<img src=${inputValue}>`;
+  cy.contains('button.ck-button-action', 'Accept', { timeout: 10000 })
+    .should('be.visible')
+    .click({ force: true });
+} 
+
       cy.setCKEditorContent(selectors.ckeditor_role_textbox, formattedContent);
     }
   }
 );
+
+Cypress.Commands.add("selectMediaFile", (mediaFileName) => {
+  cy.get(selectors.ckeditor_toolbar_item_insert_media_button).should('be.visible').click({ force: true });
+  cy.wait(3000)
+  cy.get(selectors.ckeditor_toolbar_item_insert_media_list).then(($elements) => {
+  const $target = $elements.filter((i, el) => {
+    return Cypress.$(el).text().trim() === mediaFileName;
+  });
+
+  if ($target.length) {
+    cy.wrap($target).click({ force: true });
+  }
+});
+
+cy.contains('button.media-library-select', 'Insert selected', { timeout: 10000 })
+  .should('be.visible')
+  .click({ force: true });
+});
+
 
 Cypress.Commands.add("saveContent", () => {
   cy.get(selectors.content_save_button).click();

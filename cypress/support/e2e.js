@@ -1,4 +1,7 @@
 import './commands';
+import '@percy/cypress';
+
+
 import 'cypress-plugin-api';
 import 'cypress-real-events';
 import '@mmisty/cypress-allure-adapter/support';
@@ -37,11 +40,19 @@ import './keywords/genericKeywords/verify-cookie'
 import './keywords/genericKeywords/verify-count-in-a-field'
 import './keywords/genericKeywords/verify-titles'
 import './keywords/genericKeywords/wait'
+import './keywords/genericKeywords/applitools-eyes-commands.js'
+import './keywords/genericKeywords/reusable-commands.js'
+import './keywords/genericKeywords/accept-cookies.js'
 
 Cypress.on('uncaught:exception', (err, runnable) => {
   // returning false here prevents Cypress from failing the test 
   return false;
 });
+
+Cypress.on('window:before:load', (win) => {
+  cy.stub(win.console, 'error').as('consoleError');
+});
+
 const config = Cypress.config();
 
 // The name of the cookie holding whether the user has accepted
@@ -63,7 +74,7 @@ const parsedUrl = new URL(url);
 const domain = parsedUrl.hostname;
 
 Cypress.Allure.writeEnvironmentInfo({
-  'Application': '<Your Applicaytion Name>',
+  'Application': 'INX International',
   'Environment': domain,
   Browser: browserName,
   'Browser Version': browserVersion,

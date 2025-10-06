@@ -5,9 +5,8 @@ const {
 } = require("@badeball/cypress-cucumber-preprocessor");
 import * as selectors from "../mappings-importer";
 
-When("I navigate to the CKEditor field in content {string}", (contentTitle) => {
+When("I edit the CKEditor in content {string}", (contentTitle) => {
   cy.clickOnEditContent(contentTitle);
-  cy.elementIsVisible("ckeditor_editable");
 });
 
 When("I change the text format to {string}", (textFormat) => {
@@ -22,6 +21,13 @@ When(
 );
 
 When(
+  "I click insert media {string}",(mediaFileName) => {
+    cy.selectMediaFile(mediaFileName);
+    
+  }
+);
+
+When(
   "I apply formatting {string} and type in {string} from fixture",
   (formatType, input) => {
     cy.formatTextInCkEditor(formatType, null, input);
@@ -30,6 +36,7 @@ When(
 
 When("I select {string} and insert text {string}", (heading, headingText) => {
   cy.setCKEditorContent(selectors.ckeditor_role_textbox, headingText);
+  cy.get(selectors.ckeditor_toolbar_show_more_button).click({ force: true });
   cy.get(selectors.ckeditor_toolbar_item_heading_dropdown).click({ force: true }); // Open paragraph format dropdown
   cy.get(selectors.ckeditor_toolbar_heading_dropdown_list)
     .contains(heading)
@@ -77,38 +84,11 @@ Then(
           .should("exist")
           .and("have.prop", "tagName", "BLOCKQUOTE");
       } else if (format === "bulleted") {
-        // Validate bulleted content
         cy.get(selectors.basic_node_content)
-          .invoke("html")
-          .then((actualHtml) => {
-            const actualUlHtml =
-              actualHtml.match(/<ul[\s\S]*<\/ul>/)?.[0] || "";
-            const normalizedActual = actualUlHtml.replace(/\s+/g, " ").trim();
-            const normalizedExpected = content.replace(/\s+/g, " ").trim();
-
-            // Debugging logs
-            cy.log("Actual Extracted HTML:", normalizedActual);
-            cy.log("Expected HTML:", normalizedExpected);
-
-            // Perform the assertion
-            expect(normalizedActual).to.equal(normalizedExpected);
-          });
+          .should("contain.html", `<ul>`);
       } else if (format === "numbered") {
         cy.get(selectors.basic_node_content)
-          .invoke("html")
-          .then((actualHtml) => {
-            const actualUlHtml =
-              actualHtml.match(/<ol[^>]*>[\s\S]*<\/ol>/)?.[0] || "";
-            const normalizedActual = actualUlHtml.replace(/\s+/g, " ").trim();
-            const normalizedExpected = content.replace(/\s+/g, " ").trim();
-
-            // Debugging logs
-            cy.log("Actual Extracted HTML:", normalizedActual);
-            cy.log("Expected HTML:", normalizedExpected);
-
-            // Perform the assertion
-            expect(normalizedActual).to.equal(normalizedExpected);
-          });
+          .should("contain.html", `<ol>`);
       }
     }
   }

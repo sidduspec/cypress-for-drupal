@@ -7,7 +7,11 @@ import * as user from '../../fixtures/pageObjects/userPermissionRoles.json';
 import * as paragraph from '../../fixtures/pageObjects/paragraphType.json';
 import * as menuPageObjects from '../../fixtures/pageObjects/menuPageObjects.json'
 import * as contentType from '../../fixtures/pageObjects/contentTypePageObject.json';
-import * as ckeditor from '../../fixtures/pageObjects/ckEditor.json'
+import * as ckeditor from '../../fixtures/pageObjects/ckEditor.json';
+import * as frontend from '../../fixtures/pageObjects/front-end.json';
+import * as backend from '../../fixtures/pageObjects/back-end.json';
+
+
 
 const selectors = Object.assign(
   ckeditor,
@@ -19,7 +23,9 @@ const selectors = Object.assign(
   user,
   paragraph,
   menuPageObjects,
-  contentType
+  contentType,
+  frontend,
+  backend
 );
 
 module.exports = selectors;
