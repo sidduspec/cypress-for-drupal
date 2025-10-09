@@ -1,0 +1,9 @@
+{
+  "provider": "openai",
+  "primary_model": "gpt-4o-mini",
+  "fallback_local": true,
+  "local_model": "llama3",
+  "max_tokens": 2000,
+  "temperature": 0.2,
+  "daily_token_cap": 150000
+}

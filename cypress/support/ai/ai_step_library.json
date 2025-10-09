@@ -1,0 +1,1056 @@
+{
+  "steps": [
+    {
+      "type": "When",
+      "pattern": "I fill in the contact form with the following details:",
+      "file": "cypress\\support\\step_definitions\\customDefinitionsFE\\contact-us.js"
+    },
+    {
+      "type": "When",
+      "pattern": "I enter the following product details:",
+      "file": "cypress\\support\\step_definitions\\customDefinitionsFE\\product-purchase.js"
+    },
+    {
+      "type": "When",
+      "pattern": "I should see the product code {string} in the cart",
+      "file": "cypress\\support\\step_definitions\\customDefinitionsFE\\product-purchase.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "I enter the credit card details:",
+      "file": "cypress\\support\\step_definitions\\customDefinitionsFE\\product-purchase.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "I navigate to the Shipping and Billing page and fill in the following details:",
+      "file": "cypress\\support\\step_definitions\\customDefinitionsFE\\product-purchase.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "I should see the order summary page with:",
+      "file": "cypress\\support\\step_definitions\\customDefinitionsFE\\product-purchase.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "I click the {string} button",
+      "file": "cypress\\support\\step_definitions\\customDefinitionsFE\\product-purchase.js"
+    },
+    {
+      "type": "When",
+      "pattern": "I enter {string} in the search bar",
+      "file": "cypress\\support\\step_definitions\\customDefinitionsFE\\search-function.js"
+    },
+    {
+      "type": "When",
+      "pattern": "I click on the search button",
+      "file": "cypress\\support\\step_definitions\\customDefinitionsFE\\search-function.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "I should see search results related to {string}",
+      "file": "cypress\\support\\step_definitions\\customDefinitionsFE\\search-function.js"
+    },
+    {
+      "type": "When",
+      "pattern": "I click the search button without entering a search term",
+      "file": "cypress\\support\\step_definitions\\customDefinitionsFE\\search-function.js"
+    },
+    {
+      "type": "When",
+      "pattern": "I edit the CKEditor in content {string}",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\ckEditorFunctional.js"
+    },
+    {
+      "type": "When",
+      "pattern": "I change the text format to {string}",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\ckEditorFunctional.js"
+    },
+    {
+      "type": "When",
+      "pattern": "I apply formatting {string} and type in {string}",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\ckEditorFunctional.js"
+    },
+    {
+      "type": "When",
+      "pattern": "I click insert media {string}",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\ckEditorFunctional.js"
+    },
+    {
+      "type": "When",
+      "pattern": "I apply formatting {string} and type in {string} from fixture",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\ckEditorFunctional.js"
+    },
+    {
+      "type": "When",
+      "pattern": "I select {string} and insert text {string}",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\ckEditorFunctional.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "I save basic page {string} and validate the content {string} format is {string}",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\ckEditorFunctional.js"
+    },
+    {
+      "type": "When",
+      "pattern": "I save basic page {string} and I should see the contents {string} in the frontend with their respective {string}",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\ckEditorFunctional.js"
+    },
+    {
+      "type": "When",
+      "pattern": "I save the content",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\ckEditorFunctional.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "I should see the content in the frontend with text {string}",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\ckEditorFunctional.js"
+    },
+    {
+      "type": "When",
+      "pattern": "I insert a table with required columns and rows",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\ckEditorFunctional.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "I should see the table with data in the frontend for {string}",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\ckEditorFunctional.js"
+    },
+    {
+      "type": "When",
+      "pattern": "I enter some data {string} and after that select {string}",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\ckEditorFunctional.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "I should see the Horizontal line after the content {string} in the frontend for the content {string}",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\ckEditorFunctional.js"
+    },
+    {
+      "type": "When",
+      "pattern": "I create a {string} with the following details:",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\contentTypeCRUD.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "I should see a success message {string}",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\contentTypeCRUD.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "I should see a edit success message {string}",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\contentTypeCRUD.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "I capture the page url as {string}",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\contentTypeCRUD.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "I should see the {string} in the page title",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\contentTypeCRUD.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "I publish the page",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\contentTypeCRUD.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "I should see the career page with all the sections",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\contentTypeCRUD.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "I should see the course page with all the sections",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\contentTypeCRUD.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "I should see the feature profile page with all the elements",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\contentTypeCRUD.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "I should see the magazine page with all the elements",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\contentTypeCRUD.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "I should see the resource page with all the sections",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\contentTypeCRUD.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "I should see the article page with all the elements",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\contentTypeCRUD.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "I add the following credit types:",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\contentTypeCRUD.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "I should see the test page {string} in the content table",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\contentTypeCRUD.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "I should see the title {string} and body {string} on the page",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\contentTypeCRUD.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "I should see the title {string} on the billboard",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\contentTypeCRUD.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "I should see the {string} on the News Page",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\contentTypeCRUD.js"
+    },
+    {
+      "type": "When",
+      "pattern": "I add the section {string} from edit layout for {string}",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\contentTypeCRUD.js"
+    },
+    {
+      "type": "When",
+      "pattern": "I edit the content {string} and navigate to layout page",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\contentTypeCRUD.js"
+    },
+    {
+      "type": "When",
+      "pattern": "I click on {string} to view the page",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\contentTypeCRUD.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "I click on the {string} from content page to view",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\contentTypeCRUD.js"
+    },
+    {
+      "type": "When",
+      "pattern": "I click on {string} button from primary navigation tab",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\contentTypeCRUD.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "I add the block {string} to the section index {int} with the details:",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\contentTypeCRUD.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "I should see the section with title {string}",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\contentTypeCRUD.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "I should see the button text {string}",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\contentTypeCRUD.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "I should see the block {string}",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\contentTypeCRUD.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "I should see the news content at {string}",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\contentTypeCRUD.js"
+    },
+    {
+      "type": "When",
+      "pattern": "I edit the {string} with the details:",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\contentTypeCRUD.js"
+    },
+    {
+      "type": "When",
+      "pattern": "I delete the {string}",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\contentTypeCRUD.js"
+    },
+    {
+      "type": "When",
+      "pattern": "I delete the news page {string}",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\contentTypeCRUD.js"
+    },
+    {
+      "type": "When",
+      "pattern": "I delete the landing page {string}",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\contentTypeCRUD.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "I should not see the {string} anymore",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\contentTypeCRUD.js"
+    },
+    {
+      "type": "When",
+      "pattern": "I assign the {string} to the {string} menu",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\contentTypeCRUD.js"
+    },
+    {
+      "type": "When",
+      "pattern": "I set permissions for {string} to be viewable by {string}",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\contentTypeCRUD.js"
+    },
+    {
+      "type": "When",
+      "pattern": "I assign the {string} to the {string} workflow",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\contentTypeCRUD.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "I should see the {string} on the front-end",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\contentTypeCRUD.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "I add the default layout to the {string} landing page",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\contentTypeCRUD.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "I should see the content type {string} in the content types page",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\contentTypeCRUD.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "I should {string} list item in the page",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\contentTypeCRUD.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "I validate the brochrure {string} exists",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\contentTypeCRUD.js"
+    },
+    {
+      "type": "Given",
+      "pattern": "the user navigates to the content creation page {string}",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\drupal-basic.js"
+    },
+    {
+      "type": "Given",
+      "pattern": "the user navigates to the content listing page {string}",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\drupal-basic.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "the user should see a field labeled {string}",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\drupal-basic.js"
+    },
+    {
+      "type": "When",
+      "pattern": "the user select {string} from {string} to publish the article",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\drupal-basic.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "the article should be created successfully",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\drupal-basic.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "the user filter for unpublished content {string} and clicks on {string} to edit",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\drupal-basic.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "the article {string} should be published",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\drupal-basic.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "the user log out of the application as the content is created successfully",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\drupal-basic.js"
+    },
+    {
+      "type": "When",
+      "pattern": "the user filter for Article {string} and clicks on {string} to navigate to edit page",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\drupal-basic.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "the user delete the Article",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\drupal-basic.js"
+    },
+    {
+      "type": "When",
+      "pattern": "the user navigate to {string} to add user",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\drupal-basic.js"
+    },
+    {
+      "type": "When",
+      "pattern": "the user clicks on {string} button to navigate to create user page",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\drupal-basic.js"
+    },
+    {
+      "type": "When",
+      "pattern": "the user enters mandtotory field values to create a user",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\drupal-basic.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "the test user {string} is deleted from the system",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\drupal-basic.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "the user should see the message stating the successful Menu creation",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\drupal-basic.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "the user adds a link {string} with the path {string} to the {string}",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\drupal-basic.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "the link {string} should be added to the menu",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\drupal-basic.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "the user selects the {string} region from {string} and clicks on {string}",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\drupal-basic.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "the user selects the {string} block  from {string} and clicks on {string}",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\drupal-basic.js"
+    },
+    {
+      "type": "When",
+      "pattern": "the user clicks the {string} button at {string}",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\drupal-basic.js"
+    },
+    {
+      "type": "When",
+      "pattern": "the user selects {string} from config page {string}",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\drupal-basic.js"
+    },
+    {
+      "type": "When",
+      "pattern": "the user enables maintenance mode by clicking on {string} checkbox",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\drupal-basic.js"
+    },
+    {
+      "type": "When",
+      "pattern": "the user disable maintenance mode by clicking on {string} checkbox",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\drupal-basic.js"
+    },
+    {
+      "type": "When",
+      "pattern": "the site should be in maintenance mode",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\drupal-basic.js"
+    },
+    {
+      "type": "When",
+      "pattern": "the user deletes the menu {string}",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\drupal-basic.js"
+    },
+    {
+      "type": "When",
+      "pattern": "the user deletes the taxonomy term {string}",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\drupal-basic.js"
+    },
+    {
+      "type": "When",
+      "pattern": "the user deletes the block {string} from the {string} region",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\drupal-basic.js"
+    },
+    {
+      "type": "When",
+      "pattern": "the user selects the {string} component from the available components list",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\layout-builder.js"
+    },
+    {
+      "type": "When",
+      "pattern": "the user click on the {string} button to apply the component",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\layout-builder.js"
+    },
+    {
+      "type": "When",
+      "pattern": "the user click on the {string} button to save the layout",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\layout-builder.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "the user should see the Announcement Feed block {string} on the landing page",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\layout-builder.js"
+    },
+    {
+      "type": "Given",
+      "pattern": "I clicks on the {string} to navigate to login page",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\login.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "I should see the profile for {string} in the toolbar section",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\login.js"
+    },
+    {
+      "type": "Given",
+      "pattern": "I login to admin dashboard with username {string} and password {string}",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\login.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "I validate the existance of the media types:",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\mediaTypeCRUD.js"
+    },
+    {
+      "type": "When",
+      "pattern": "I add a document with the name {string} and file {string}",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\mediaTypeCRUD.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "I should see the {string} in the media library",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\mediaTypeCRUD.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "I update the {string} for {string} with {string} and assert its presense in the media table",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\mediaTypeCRUD.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "I update the {string} for {string} with {string} and alt text {string} and assert its presense in the media table",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\mediaTypeCRUD.js"
+    },
+    {
+      "type": "When",
+      "pattern": "I add an image with the name {string}, file {string}, and alt text {string}",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\mediaTypeCRUD.js"
+    },
+    {
+      "type": "When",
+      "pattern": "I add an {string} with the name {string}, file {string}",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\mediaTypeCRUD.js"
+    },
+    {
+      "type": "When",
+      "pattern": "I add a remote video with the name {string} and URL {string}",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\mediaTypeCRUD.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "I should see the remote video in the media library at the top of the table",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\mediaTypeCRUD.js"
+    },
+    {
+      "type": "When",
+      "pattern": "I add and validate a media type {string} with description {string} and source {string}",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\mediaTypeCRUD.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "I delete the {string} media Type",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\mediaTypeCRUD.js"
+    },
+    {
+      "type": "When",
+      "pattern": "I delete the {string} media",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\mediaTypeCRUD.js"
+    },
+    {
+      "type": "When",
+      "pattern": "I delete the video media",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\mediaTypeCRUD.js"
+    },
+    {
+      "type": "Given",
+      "pattern": "I create a menu with name {string} and admin summary {string}",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\menuCRUD.js"
+    },
+    {
+      "type": "Given",
+      "pattern": "I enter {string} as the menu name",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\menuCRUD.js"
+    },
+    {
+      "type": "Given",
+      "pattern": "I enter {string} as administrative summary",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\menuCRUD.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "the menu {string} should be visible in the {string}",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\menuCRUD.js"
+    },
+    {
+      "type": "When",
+      "pattern": "I click on {string} next to the menu {string}",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\menuCRUD.js"
+    },
+    {
+      "type": "When",
+      "pattern": "I change the menu name to {string}",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\menuCRUD.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "I delete the menu item {string}",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\menuCRUD.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "the menu {string} should not be visible in the {string}",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\menuCRUD.js"
+    },
+    {
+      "type": "When",
+      "pattern": "I navigate to {string} menu links",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\menuCRUD.js"
+    },
+    {
+      "type": "When",
+      "pattern": "I enter {string} as the link title",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\menuCRUD.js"
+    },
+    {
+      "type": "When",
+      "pattern": "I enter {string} as the link path",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\menuCRUD.js"
+    },
+    {
+      "type": "When",
+      "pattern": "I select {string} as the parent link",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\menuCRUD.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "the link {string} should be visible for the menu {string}",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\menuCRUD.js"
+    },
+    {
+      "type": "When",
+      "pattern": "I edit menu link {string} title to {string} and link path to {string}",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\menuCRUD.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "I delete the menu link {string}",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\menuCRUD.js"
+    },
+    {
+      "type": "When",
+      "pattern": "I add a new paragraph type with the following details:",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\paragraphType.js"
+    },
+    {
+      "type": "When",
+      "pattern": "I add a new field with the following details:",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\paragraphType.js"
+    },
+    {
+      "type": "When",
+      "pattern": "I configure allowed values for the field with:",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\paragraphType.js"
+    },
+    {
+      "type": "When",
+      "pattern": "I add a new content type with the following details:",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\paragraphType.js"
+    },
+    {
+      "type": "When",
+      "pattern": "I delete the list content {string}",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\paragraphType.js"
+    },
+    {
+      "type": "When",
+      "pattern": "I delete the paragraph type {string}",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\paragraphType.js"
+    },
+    {
+      "type": "When",
+      "pattern": "I delete the content type {string}",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\paragraphType.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "I should see zero {string} in the status report",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\reportsAndSiteHealth.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "I should see the cron run interval set to {string}",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\reportsAndSiteHealth.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "I should see that detailed cron logging is {string}",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\reportsAndSiteHealth.js"
+    },
+    {
+      "type": "When",
+      "pattern": "I verify that the last cron run was within {string}",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\reportsAndSiteHealth.js"
+    },
+    {
+      "type": "When",
+      "pattern": "I check for the broken links in the current environment",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\reportsAndSiteHealth.js"
+    },
+    {
+      "type": "When",
+      "pattern": "I select the {string} vocabulary",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\taxonomyTermsCRUD.js"
+    },
+    {
+      "type": "When",
+      "pattern": "I create a term with the name {string} and description {string} for the vocabulary {string}",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\taxonomyTermsCRUD.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "I should see the term {string} in the list of {string} vocabulary",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\taxonomyTermsCRUD.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "I should see the updated term {string} in the list of {string} vocabulary",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\taxonomyTermsCRUD.js"
+    },
+    {
+      "type": "When",
+      "pattern": "I edit the term {string} to {string}",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\taxonomyTermsCRUD.js"
+    },
+    {
+      "type": "When",
+      "pattern": "I delete the term {string} from the {string} vocabulary",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\taxonomyTermsCRUD.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "I should not see the term {string} anymore",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\taxonomyTermsCRUD.js"
+    },
+    {
+      "type": "Given",
+      "pattern": "I login as {string} with username {string} and password {string}",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\userRolesAndPermissions.js"
+    },
+    {
+      "type": "When",
+      "pattern": "I attempt to {string}",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\userRolesAndPermissions.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "I validate the visibility of the following elements:",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\userRolesAndPermissions.js"
+    },
+    {
+      "type": "Given",
+      "pattern": "I load pages from fixture {string}",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\visual-steps.js"
+    },
+    {
+      "type": "When",
+      "pattern": "I capture Percy snapshots for each page",
+      "file": "cypress\\support\\step_definitions\\customDefinitoins\\visual-steps.js"
+    },
+    {
+      "type": "When",
+      "pattern": "the user selects {string} from the admin list",
+      "file": "cypress\\support\\step_definitions\\genericDefinitions\\generic-definitions.js"
+    },
+    {
+      "type": "When",
+      "pattern": "the user enter the title {string} in the field {string}",
+      "file": "cypress\\support\\step_definitions\\genericDefinitions\\generic-definitions.js"
+    },
+    {
+      "type": "When",
+      "pattern": "the user enter the body {string} in the CKeditor field {string}",
+      "file": "cypress\\support\\step_definitions\\genericDefinitions\\generic-definitions.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "I logout of the application",
+      "file": "cypress\\support\\step_definitions\\genericDefinitions\\generic-definitions.js"
+    },
+    {
+      "type": "Then",
+      "pattern": " I will logout of the application",
+      "file": "cypress\\support\\step_definitions\\genericDefinitions\\generic-definitions.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "I logout of the application and visit the {string} page",
+      "file": "cypress\\support\\step_definitions\\genericDefinitions\\generic-definitions.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "I check the page for visual correctness",
+      "file": "cypress\\support\\step_definitions\\genericDefinitions\\generic-definitions.js"
+    },
+    {
+      "type": "Given",
+      "pattern": "I start visual testing with name {string}",
+      "file": "cypress\\support\\step_definitions\\genericDefinitions\\generic-definitions.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "I end visual testing",
+      "file": "cypress\\support\\step_definitions\\genericDefinitions\\generic-definitions.js"
+    },
+    {
+      "type": "When",
+      "pattern": "the user navigates to {string}",
+      "file": "cypress\\support\\step_definitions\\genericDefinitions\\generic-definitions.js"
+    },
+    {
+      "type": "Given",
+      "pattern": "the user fill in the contact form",
+      "file": "cypress\\support\\step_definitions\\genericDefinitions\\generic-definitions.js"
+    },
+    {
+      "type": "When",
+      "pattern": "the user enters {string} in the text field",
+      "file": "cypress\\support\\step_definitions\\genericDefinitions\\generic-definitions.js"
+    },
+    {
+      "type": "When",
+      "pattern": "the user click on the {string} button",
+      "file": "cypress\\support\\step_definitions\\genericDefinitions\\generic-definitions.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "the user should see the message {string}",
+      "file": "cypress\\support\\step_definitions\\genericDefinitions\\generic-definitions.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "the user clicks {string}",
+      "file": "cypress\\support\\step_definitions\\genericDefinitions\\generic-definitions.js"
+    },
+    {
+      "type": "When",
+      "pattern": "the user selects {string} and click on {string}",
+      "file": "cypress\\support\\step_definitions\\genericDefinitions\\generic-definitions.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "the user enters random title {string} in the field {string}",
+      "file": "cypress\\support\\step_definitions\\genericDefinitions\\generic-definitions.js"
+    },
+    {
+      "type": "When",
+      "pattern": "I navigate to {string}",
+      "file": "cypress\\support\\step_definitions\\genericDefinitions\\generic-definitions.js"
+    },
+    {
+      "type": "When",
+      "pattern": "I click on {string} button",
+      "file": "cypress\\support\\step_definitions\\genericDefinitions\\generic-definitions.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "I should see the message {string}",
+      "file": "cypress\\support\\step_definitions\\genericDefinitions\\generic-definitions.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "I should see the {string} in the main navigation menu {string}",
+      "file": "cypress\\support\\step_definitions\\genericDefinitions\\generic-definitions.js"
+    },
+    {
+      "type": "Given",
+      "pattern": "I visit the {string} page",
+      "file": "cypress\\support\\step_definitions\\genericDefinitions\\generic-definitions.js"
+    },
+    {
+      "type": "Given",
+      "pattern": "I visit the homepage",
+      "file": "cypress\\support\\step_definitions\\genericDefinitions\\generic-definitions.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "I should see {string}",
+      "file": "cypress\\support\\step_definitions\\genericDefinitions\\generic-definitions.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "I should see the block with selector {string}",
+      "file": "cypress\\support\\step_definitions\\genericDefinitions\\generic-definitions.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "the page should not contain any PHP or DB error",
+      "file": "cypress\\support\\step_definitions\\genericDefinitions\\generic-definitions.js"
+    },
+    {
+      "type": "Given",
+      "pattern": "I hover over the selector {string}",
+      "file": "cypress\\support\\step_definitions\\genericDefinitions\\generic-definitions.js"
+    },
+    {
+      "type": "Given",
+      "pattern": "I click the element {string}",
+      "file": "cypress\\support\\step_definitions\\genericDefinitions\\generic-definitions.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "I should be on the homepage",
+      "file": "cypress\\support\\step_definitions\\genericDefinitions\\generic-definitions.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "the element {string} should have CSS {string} containing {string}",
+      "file": "cypress\\support\\step_definitions\\genericDefinitions\\generic-definitions.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "the element {string} should be centered",
+      "file": "cypress\\support\\step_definitions\\genericDefinitions\\generic-definitions.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "I should see the element with selector {string}",
+      "file": "cypress\\support\\step_definitions\\genericDefinitions\\generic-definitions.js"
+    },
+    {
+      "type": "Given",
+      "pattern": "I set viewport to {int} and {int}",
+      "file": "cypress\\support\\step_definitions\\genericDefinitions\\generic-definitions.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "the responsive element {string} should be visible",
+      "file": "cypress\\support\\step_definitions\\genericDefinitions\\generic-definitions.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "I should see the content title {string}",
+      "file": "cypress\\support\\step_definitions\\genericDefinitions\\generic-definitions.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "I should see an image with selector {string}",
+      "file": "cypress\\support\\step_definitions\\genericDefinitions\\generic-definitions.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "the element {string} should have class {string}",
+      "file": "cypress\\support\\step_definitions\\genericDefinitions\\generic-definitions.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "I should see the form element {string}",
+      "file": "cypress\\support\\step_definitions\\genericDefinitions\\generic-definitions.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "I should see the button {string}",
+      "file": "cypress\\support\\step_definitions\\genericDefinitions\\generic-definitions.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "the block {string} should contain {string}",
+      "file": "cypress\\support\\step_definitions\\genericDefinitions\\generic-definitions.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "the element {string} should be visible",
+      "file": "cypress\\support\\step_definitions\\genericDefinitions\\generic-definitions.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "I should see the link {string}",
+      "file": "cypress\\support\\step_definitions\\genericDefinitions\\generic-definitions.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "the page should not contain any JavaScript error",
+      "file": "cypress\\support\\step_definitions\\genericDefinitions\\generic-definitions.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "the header should still be visible",
+      "file": "cypress\\support\\step_definitions\\genericDefinitions\\generic-definitions.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "I scroll to 500 pixels vertically",
+      "file": "cypress\\support\\step_definitions\\genericDefinitions\\generic-definitions.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "the element {string} should have natural width greater than {int}",
+      "file": "cypress\\support\\step_definitions\\genericDefinitions\\generic-definitions.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "the element {string} should have CSS {string} containing {string}",
+      "file": "cypress\\support\\step_definitions\\genericDefinitions\\generic-definitions.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "the element {string} should have CSS {string} not empty",
+      "file": "cypress\\support\\step_definitions\\genericDefinitions\\generic-definitions.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "the responsive element {string} should be visible",
+      "file": "cypress\\support\\step_definitions\\genericDefinitions\\generic-definitions.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "the element {string} should not be visible",
+      "file": "cypress\\support\\step_definitions\\genericDefinitions\\generic-definitions.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "the element {string} should be below {string}",
+      "file": "cypress\\support\\step_definitions\\genericDefinitions\\generic-definitions.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "the element {string} should have CSS {string} less than {string}",
+      "file": "cypress\\support\\step_definitions\\genericDefinitions\\generic-definitions.js"
+    },
+    {
+      "type": "When",
+      "pattern": "I hover over the selector {string}",
+      "file": "cypress\\support\\step_definitions\\genericDefinitions\\generic-definitions.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "I should see the dropdown {string}",
+      "file": "cypress\\support\\step_definitions\\genericDefinitions\\generic-definitions.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "I should be on the homepage",
+      "file": "cypress\\support\\step_definitions\\genericDefinitions\\generic-definitions.js"
+    },
+    {
+      "type": "Then",
+      "pattern": "the element {string} should not be visible",
+      "file": "cypress\\support\\step_definitions\\genericDefinitions\\generic-definitions.js"
+    }
+  ],
+  "keywords": [
+    {
+      "name": "formatText",
+      "file": "cypress\\support\\keywords\\customKeywords\\ckeditor-commands.js",
+      "category": "custom"
+    },
+    {
+      "name": "openSectionIfNeeded",
+      "file": "cypress\\support\\keywords\\genericKeywords\\enter-value-in-a-field.js",
+      "category": "generic"
+    },
+    {
+      "name": "implementation",
+      "file": "cypress\\support\\keywords\\genericKeywords\\field-visible-not-visible.js",
+      "category": "generic"
+    }
+  ]
+}
